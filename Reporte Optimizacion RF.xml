@@ -1,0 +1,710 @@
+<t t-name="x_project_task_worksheet_template_17">
+  
+        <div class="page">
+
+<style>
+  /* ======== Estilos base ======== */
+  .ropt-container {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    color: #2b3e50;
+  }t-call
+
+  /* ======== Encabezado ======== */
+  .ropt-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid #007b91;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .ropt-left h1 {
+    margin: 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #007B8F;
+  }
+
+  /* ======== Fila de información ======== */
+  .ropt-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    background-color: #fdfdfd;
+    border: 1px solid #cfd8dc;
+    border-radius: 6px;
+    font-size: 12.5px;
+  }
+  .ropt-info-label {
+    font-weight: bold;
+    color: #005f6a;
+    min-width: 130px;
+    margin-right: 10px;
+  }
+
+  /* ======== Títulos de sección ======== */
+  .ropt-section-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #005f6a;
+    border-bottom: 2px solid #007b91;
+    padding-bottom: 4px;
+  }
+
+  /* ======== Bloque general de imágenes ======== */
+  .evidencia-card {
+    border: 1px solid #cfd8dc;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    page-break-inside: avoid;
+  }
+  .img-title, .evidencia-card h5 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1-2em;
+    color: #007B8F;
+  }
+    .title-site h5 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 2em;
+    color: #007B8F;
+  }
+  .evidencia-img-container img {
+    max-width: 100%;
+    height: 980px;
+    object-fit: contain;
+    border: 1px solid #ccc;
+  }
+
+  /* ======== Imágenes GPS ======== */
+  .gps-container img {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+   
+    
+  }
+  /* Contenedor de cada evidencia */
+.evidencia-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    page-break-inside: avoid;
+}
+
+/* Títulos principales de sección */
+.evidencia-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 4px;
+}
+
+/* Títulos internos de cada imagen */
+.img-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+/* Contenedor de imágenes */
+.gps-container {
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* Imágenes personalizadas */
+.custom-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Evita cortes feos en PDF */
+.row {
+    page-break-inside: avoid;
+}
+
+/* Mejor organización de columnas */
+.col-6 {
+    padding: 0 8px;
+}
+
+</style>
+    <!-- Estilos personalizados -->
+      <style>
+   /* ======== Estilos base ======== */
+.ropt-container {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  color: #2b3e50;
+}
+
+/* ======== Encabezado ======== */
+.ropt-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid #007b91;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.ropt-left h1 {
+  margin: 0;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #007B8F;
+}
+
+/* ======== Filas de información ======== */
+.ropt-info-row,
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  background-color: #fff;
+  border: 1px solid #cfd8dc;
+  border-radius: 6px;
+  font-size: 12.5px;
+}
+
+.info-row.alt {
+  background-color: #eef6fa;
+}
+
+.ropt-info-label,
+.info-label {
+  font-weight: bold;
+  color: #005f6a;
+  min-width: 120px;
+  margin-right: 10px;
+}
+
+/* ======== Títulos de sección ======== */
+.ropt-section-title,
+.evidencia-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 20px 0 10px;
+  color: #005f6a;
+  border-bottom: 2px solid #007b91;
+  padding-bottom: 4px;
+  text-align: center;
+}
+
+/* ======== Tarjetas de evidencia ======== */
+.evidencia-card {
+  border: 1px solid #cfd8dc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  page-break-inside: avoid;
+  height: 100%;
+}
+
+.img-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  color: #007B8F;
+}
+
+.title-site h5 {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 2em;
+  color: #007B8F;
+}
+
+/* ======== Imágenes ======== */
+.evidencia-img-container img,
+.gps-container img,
+.custom-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.evidencia-img-container img {
+  height: 980px;
+}
+
+.gps-container {
+  border: 1px solid #cddfea;
+  background-color: #f8fbfd;
+  border-radius: 6px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.gps-container img,
+.gps-container div[t-field] {
+  height: 100% !important;
+  max-height: 100%;
+  max-width: 100%;
+  object-position: center center;
+}
+
+/* ======== Bloques de tabla ======== */
+.bloque-tabla {
+  border: 1px solid #cddfea;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f8fbfd;
+  margin-bottom: 20px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.bloque-tabla h5 {
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #004085;
+}
+
+/* ======== Utilidades ======== */
+.comentario-text {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.row {
+  page-break-inside: avoid;
+}
+
+.col-6 {
+  padding: 0 8px;
+}
+
+</style>
+
+
+
+  <!-- ======== CONTENIDO ======== -->
+  <div class="ropt-container">
+
+    <!-- Encabezado -->
+    <div class="ropt-header">
+      <!-- Logo 
+      <div class="ropt-right" style="display: flex; align-items: center; gap: 10px;">
+        <img class="ropt-logo"
+             t-if="worksheet.x_studio_related_field_1a6_1j2fhg7ko"
+             t-att-src="'data:image/png;base64,%s' % worksheet.x_studio_related_field_1a6_1j2fhg7ko.decode()"/>
+        <span t-field="worksheet.x_studio_cliente"/>
+      </div>
+       -->
+      <div class="ropt-left"> 
+        <h1>Reporte de Optimización</h1>
+      </div>
+    </div>
+
+    <!-- Datos principales -->
+    <div class="row">
+      <div class="col-6">
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Título</div>
+          <span t-field="worksheet.x_studio_titulo"/>
+        </div>
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Cliente</div>
+          <span t-field="worksheet.x_studio_cliente"/>
+        </div>
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Integrador WOM</div>
+          <span t-field="worksheet.x_studio_integrador_wom"/>
+        </div>
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Empresa Ejecutora</div>
+          <span t-field="worksheet.x_studio_empresa"/>
+        </div>
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Nemónico</div>
+          <span t-field="worksheet.x_studio_nemnico"/>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Fecha</div>
+          <span t-field="worksheet.x_studio_fecha_instalacin"/>
+        </div>
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Responsable</div>
+          <div widget="many2many_tags" t-field="worksheet.x_studio_responsable"/>
+        </div>
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Región Metropolitana</div>
+          <span t-field="worksheet.x_studio_regin_metropolitana"/>
+        </div>
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Comuna</div>
+          <span t-field="worksheet.x_studio_comuna"/>
+        </div>
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Dirección</div>
+          <span t-field="worksheet.x_studio_direccin"/>
+        </div>
+      </div>
+    </div> 
+
+    <!-- Detalle de trabajo -->
+    <div class="ropt-section-title">Detalle Trabajo Realizado</div>
+    <div class="ropt-info-row">
+      <span t-field="worksheet.x_studio_detalle_trabajo_1"/>
+    </div>
+
+    <!-- Equipos -->
+    <div class="ropt-section-title">Equipos</div>
+    <div class="row">
+      <div class="col-6">
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Equipamiento</div>
+          <div widget="many2many_tags" t-field="worksheet.x_studio_equipamiento"/>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="ropt-info-row">
+          <div class="ropt-info-label">Nº Serie</div>
+          <span t-field="worksheet.x_studio_n_serie"/>
+        </div>
+      </div>
+    </div>
+
+        <!-- Bloque de imágenes -->
+        <t t-if="worksheet.x_studio_foto_general_del_sitio_n1 or worksheet.x_studio_foto_general_del_sitio_n2 or worksheet.x_studio_vista_general_gabinete_1">
+          <table style="width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 20px; page-break-inside: avoid;">
+            <tr>
+              <t t-if="worksheet.x_studio_foto_general_del_sitio_n1">
+                <td style="width: 50%; padding-right: 10px; vertical-align: top;">
+                  <div class="evidencia-card mb-3">
+                    <h6 class="img-title">General sitio (Vista General entrada edificio)</h6>
+                    <div class="gps-container" style="background: none; padding: 0;">
+                      <div t-field="worksheet.x_studio_foto_general_del_sitio_n1" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" style="width: 100%; height: 270px; object-fit: contain;"/>
+                    </div>
+                  </div>
+                </td>
+              </t>
+        
+              <t t-if="worksheet.x_studio_foto_general_del_sitio_n2">
+                <td style="width: 50%; padding-left: 10px; vertical-align: top;">
+                  <div class="evidencia-card mb-3">
+                    <h6 class="img-title">General sitio (Gabinetes / Container exterior)</h6>
+                    <div class="gps-container" style="background: none; padding: 0;">
+                      <div t-field="worksheet.x_studio_foto_general_del_sitio_n2" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" style="width: 100%; height: 270px; object-fit: contain;"/>
+                    </div>
+                  </div>
+                </td>
+              </t>
+            </tr>
+          </table>
+        </t>
+
+    
+        <t t-if="worksheet.x_studio_vista_general_gabinete_1">
+          <div style="page-break-inside: avoid; page-break-before: always; width: 100%; height; 500px; padding: 0; vertical-align: middle;">
+            <div class="evidencia-card">
+              <h5 style="font-size: 2em;">Sitio de Actividad</h5>
+              <div class="evidencia-img-container">
+                <img t-att-src="'data:image/png;base64,%s' % worksheet.x_studio_vista_general_gabinete_1.decode()"/>
+              </div>
+            </div>
+          </div>
+        </t>
+
+
+  </div> <!-- cierre ropt-container -->
+  
+
+  <div style="page-break-after: always;"/>
+  <!-- Evidencias página: Consumo -->
+
+<!-- Evidencias página 3: Consumo Antes y Después de la Optimización -->
+<div style="page-break-before: always; page-break-inside: avoid;">
+
+  <!-- Título de sección -->
+  <div class="row">
+    <div class="col-12">
+      <h4 class="ropt-section-title evidencia-card text-center mb-4">Consumo del Sitio</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Columna izquierda: Consumo Antes -->
+    <div class="col-6">
+      <t t-if="worksheet.x_studio_consumo_del_sitio_antes_de_la_optimizacin or worksheet.x_studio_consumo_antes_de_la_optimizacin_n2">
+        <h5 class="evidencia-title">Antes</h5>
+
+        <t t-if="worksheet.x_studio_consumo_del_sitio_antes_de_la_optimizacin">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title">Consumo Antes de la Optimización N°1</h6>
+            <div class="gps-container">
+              <div t-field="worksheet.x_studio_consumo_del_sitio_antes_de_la_optimizacin" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+
+        <t t-if="worksheet.x_studio_consumo_antes_de_la_optimizacin_n2">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title">Consumo Antes de la Optimización N°2</h6>
+            <div class="gps-container">
+              <div t-field="worksheet.x_studio_consumo_antes_de_la_optimizacin_n2" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+      </t>
+    </div>
+
+    <!-- Columna derecha: Consumo Después -->
+    <div class="col-6">
+      <t t-if="worksheet.x_studio_consumo_del_sitio_despus_de_la_optimizacin or worksheet.x_studio_consumo_despus_de_la_optimizacin_n2">
+        <h5 class="evidencia-title">Después</h5>
+
+        <t t-if="worksheet.x_studio_consumo_del_sitio_despus_de_la_optimizacin">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title">Consumo Después de la Optimización N°1</h6>
+            <div class="gps-container">
+              <div t-field="worksheet.x_studio_consumo_del_sitio_despus_de_la_optimizacin" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+
+        <t t-if="worksheet.x_studio_consumo_despus_de_la_optimizacin_n2">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title">Consumo Después de la Optimización N°2</h6>
+            <div class="gps-container">
+              <div t-field="worksheet.x_studio_consumo_despus_de_la_optimizacin_n2" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+      </t>
+    </div>
+  </div>
+</div>
+
+
+<!-- Evidencias página 4: Consumo Antes y Después de la Optimización (Fotos 3 y 4) -->
+<div style="page-break-before: always; page-break-inside: avoid;">
+  
+  <!-- Título de sección -->
+  <div class="row">
+    <div class="col-12">
+      <h4 class="ropt-section-title evidencia-card text-center mb-4">Consumo del Sitio</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Columna izquierda: Consumo Antes -->
+    <div class="col-6">
+      <t t-if="worksheet.x_studio_consumo_antes_de_la_optimizacin_n3 or worksheet.x_studio_consumo_antes_de_la_optimizacin_n4">
+        <h5 class="evidencia-title">Antes</h5>
+
+        <t t-if="worksheet.x_studio_consumo_antes_de_la_optimizacin_n3">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title">Consumo Antes de la Optimización N°3</h6>
+            <div class="gps-container">
+              <div t-field="worksheet.x_studio_consumo_antes_de_la_optimizacin_n3" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+
+        <t t-if="worksheet.x_studio_consumo_antes_de_la_optimizacin_n4">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title">Consumo Antes de la Optimización N°4</h6>
+            <div class="gps-container">
+              <div t-field="worksheet.x_studio_consumo_antes_de_la_optimizacin_n4" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+      </t>
+    </div>
+
+    <!-- Columna derecha: Consumo Después -->
+    <div class="col-6">
+      <t t-if="worksheet.x_studio_consumo_despus_de_la_optimizacin_n3 or worksheet.x_studio_consumo_despus_de_la_optimizacin_n4">
+        <h5 class="evidencia-title">Después</h5>
+
+        <t t-if="worksheet.x_studio_consumo_despus_de_la_optimizacin_n3">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title">Consumo Después de la Optimización N°3</h6>
+            <div class="gps-container">
+              <div t-field="worksheet.x_studio_consumo_despus_de_la_optimizacin_n3" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+
+        <t t-if="worksheet.x_studio_consumo_despus_de_la_optimizacin_n4">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title">Consumo Después de la Optimización N°4</h6>
+            <div class="gps-container">
+              <div t-field="worksheet.x_studio_consumo_despus_de_la_optimizacin_n4" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+      </t>
+    </div>
+  </div>
+</div>
+
+<!-- Evidencias página 3: Fotos de Gabinete Antes y Después de la Optimización -->
+<div style="page-break-before: always; page-break-inside: avoid;">
+
+  <!-- Título de sección -->
+  <div class="row">
+    <div class="col-12">
+      <h4 class="ropt-section-title evidencia-card text-center mb-4">
+        Optimización Realizada
+      </h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Columna izquierda: Antes -->
+    <div class="col-6">
+      <t t-if="worksheet.x_studio_fotos_de_gabinete_antes_de_la_optimizacin_n1 or worksheet.x_studio_fotos_de_gabinete_antes_de_la_optimizacin_n2">
+        <h5 class="evidencia-title text-center">Antes</h5>
+
+        <t t-if="worksheet.x_studio_fotos_de_gabinete_antes_de_la_optimizacin_n1">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title text-center">Vista Gabinete Antes de la optimización N°1</h6>
+            <div class="gps-container text-center">
+              <div t-field="worksheet.x_studio_fotos_de_gabinete_antes_de_la_optimizacin_n1" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+
+        <t t-if="worksheet.x_studio_fotos_de_gabinete_antes_de_la_optimizacin_n2">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title text-center">Vista Gabinete Antes de la optimización N°2</h6>
+            <div class="gps-container text-center">
+              <div t-field="worksheet.x_studio_fotos_de_gabinete_antes_de_la_optimizacin_n2" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+      </t>
+    </div>
+
+    <!-- Columna derecha: Después -->
+    <div class="col-6">
+      <t t-if="worksheet.x_studio_fotos_de_gabinete_despus_de_la_optimizacin_n1 or worksheet.x_studio_fotos_de_gabinete_despus_de_la_optimizacin_n2">
+        <h5 class="evidencia-title text-center">Después</h5>
+
+        <t t-if="worksheet.x_studio_fotos_de_gabinete_despus_de_la_optimizacin_n1">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title text-center">Vista Gabinete Después de la optimización N°1</h6>
+            <div class="gps-container text-center">
+              <div t-field="worksheet.x_studio_fotos_de_gabinete_despus_de_la_optimizacin_n1" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+
+        <t t-if="worksheet.x_studio_fotos_de_gabinete_despus_de_la_optimizacin_n2">
+          <div class="evidencia-card mb-3">
+            <h6 class="img-title text-center">Vista Gabinete Después de la optimización N°2</h6>
+            <div class="gps-container text-center">
+              <div t-field="worksheet.x_studio_fotos_de_gabinete_despus_de_la_optimizacin_n2" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+            </div>
+          </div>
+        </t>
+      </t>
+    </div>
+  </div>
+</div>
+
+<!-- Evidencias: Diagramas y Topología -->
+<div style="page-break-before: always; page-break-inside: avoid;">
+
+  <!-- Título de sección -->
+  <div class="row">
+    <div class="col-12">
+      <h4 class="ropt-section-title evidencia-card text-center mb-4">
+        Diagramas y Topología
+      </h4>
+    </div>
+  </div>
+
+  <!-- Fila 1: Diagrama de Energía y Diagrama de Conexión -->
+  <div class="row mb-4">
+    <div class="col-6">
+      <t t-if="worksheet.x_studio_diagrama_de_energa">
+        <div class="evidencia-card mb-3">
+          <h6 class="img-title text-center">Diagrama de Energía</h6>
+          <div class="gps-container text-center">
+            <div t-field="worksheet.x_studio_diagrama_de_energa" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+          </div>
+        </div>
+      </t>
+    </div>
+    <div class="col-6">
+      <t t-if="worksheet.x_studio_diagrama_de_conexin">
+        <div class="evidencia-card mb-3">
+          <h6 class="img-title text-center">Diagrama de Conexión</h6>
+          <div class="gps-container text-center">
+            <div t-field="worksheet.x_studio_diagrama_de_conexin" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+          </div>
+        </div>
+      </t>
+    </div>
+  </div>
+
+  <!-- Fila 2: Topología -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <t t-if="worksheet.x_studio_topologa">
+        <div class="evidencia-card mb-3">
+          <h6 class="img-title text-center">Topología</h6>
+          <div class="gps-container text-center">
+            <div t-field="worksheet.x_studio_topologa" t-options="{&quot;widget&quot;: &quot;image&quot;, &quot;size&quot;: [0,270], &quot;zoom&quot;: &quot;true&quot;}" class="custom-image"/>
+          </div>
+        </div>
+      </t>
+    </div>
+  </div>
+
+  <!-- Comentarios -->
+  <div class="row">
+    <div class="col-12">
+      <t t-if="worksheet.x_comments">
+        <div class="evidencia-card p-3">
+          <h6 class="img-title mb-2">Comentarios</h6>
+          <div t-field="worksheet.x_comments"/>
+        </div>
+      </t>
+    </div>
+  </div>
+</div>
+
+
+
+
+     </div>
+    
+</t>

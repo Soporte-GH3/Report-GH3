@@ -1,0 +1,244 @@
+<t t-name="x_project_task_worksheet_template_19">
+
+<!-- ======== CSS OPTIMIZADO ======== -->
+<style>
+  /* ======== ESTILOS BASE ======== */
+  body, table {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #000;
+  }
+
+  .header-reporte {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .header-reporte th, .header-reporte td {
+    border: 1px solid #000;
+    padding: 6px 8px;
+    vertical-align: middle;
+  }
+
+  .titulo {
+    background-color: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 6px;
+  }
+
+  .subtitulo {
+    background-color: #d72626;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px;
+  }
+
+  .label {
+    font-weight: bold;
+    background-color: #f9f9f9;
+  }
+
+  .logo {
+    width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+
+  /* ======== EVIDENCIAS ======== */
+  .evidencias-container {
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .col-6 {
+    width: 50%;
+    padding: 5px;
+  }
+
+  .evidencia-card {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px;
+    background-color: #f9f9f9;
+    margin-bottom: 12px;
+    page-break-inside: avoid;
+  }
+
+  .img-title {
+    font-weight: bold;
+    font-size: 12px;
+    color: #003366;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    text-align: center;
+  }
+
+  .gps-container {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .custom-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+
+  /* ======== IMPRESIÓN ======== */
+  @media print {
+    .evidencia-card, .row { page-break-inside: avoid; }
+    th, td { -webkit-print-color-adjust: exact; }
+  }
+</style>
+
+<!-- ======== ENCABEZADO ======== -->
+<table class="header-reporte">
+  <tr><th colspan="12" class="titulo">PHOENIX TOWER INTERNATIONAL</th></tr>
+  <tr><th colspan="12" class="subtitulo">REPORTE TSS</th></tr>
+  <tr>
+    <td colspan="4"><img class="logo" t-if="worksheet.x_studio_logo_cliente" t-att-src="image_data_uri(worksheet.x_studio_logo_cliente)"/></td>
+    <td colspan="4" style="text-align:center; font-weight:bold;">Reporte <span t-field="worksheet.x_studio_id_sitio"/></td>
+    <td colspan="4"><img class="logo" src="https://www.gh3.cl/images/gh3_final_logo_RGB.png"/></td>
+  </tr>
+</table>
+
+<!-- ======== INFORMACIÓN GENERAL ======== -->
+<table class="header-reporte">
+  <tr><th colspan="12" class="subtitulo">INFORMACIÓN GENERAL</th></tr>
+  <tr>
+    <td class="label">Proveedor:</td><td><span t-field="worksheet.x_studio_proveedor"/></td>
+    <td class="label">Tipo de Visita:</td><td><span t-field="worksheet.x_studio_tipo_de_visita"/></td>
+  </tr>
+  <tr>
+    <td class="label">ID Sitio:</td><td><span t-field="worksheet.x_studio_id_sitio"/></td>
+    <td class="label">Altura ESA (m):</td><td><span t-field="worksheet.x_studio_altura_esa_m"/></td>
+  </tr>
+  <tr>
+    <td class="label">Sitio de Actividad:</td><td><span t-field="worksheet.x_studio_sitio_de_actividad"/></td>
+    <td class="label">Tipo de Sitio:</td><td><span t-field="worksheet.x_studio_tipo_de_sitio"/></td>
+  </tr>
+  <tr>
+    <td class="label">Fecha de Inicio:</td><td><span t-field="worksheet.x_studio_fecha_de_inicio"/></td>
+    <td class="label">Tipo de Estructura:</td><td><span t-field="worksheet.x_studio_tipo_de_estructura"/></td>
+  </tr>
+  <tr>
+    <td class="label">Fecha de Término:</td><td><span t-field="worksheet.x_studio_fecha_de_termino"/></td>
+    <td class="label">Latitud:</td><td><span t-field="worksheet.x_studio_latitud" options="{&quot;digits&quot;:[12,6]}"/></td>
+  </tr>
+  <tr>
+    <td class="label">Dirección:</td><td><span t-field="worksheet.x_studio_direccin"/></td>
+    <td class="label">Longitud:</td><td><span t-field="worksheet.x_studio_longitud" options="{&quot;digits&quot;:[12,6]}"/></td>
+  </tr>
+</table>
+
+<!-- ======== CONDICIONES DE ACCESO ======== -->
+<table class="header-reporte">
+  <tr><th colspan="12" class="subtitulo">CONDICIONES DE ACCESO</th></tr>
+  <tr>
+    <td class="label">Tipo de Camino:</td><td><span t-field="worksheet.x_studio_tipo_de_camino"/></td>
+    <td class="label">Medio de Acceso:</td><td><span t-field="worksheet.x_studio_medio_de_acceso"/></td>
+  </tr>
+  <tr>
+    <td class="label">Tipo de Candado:</td><td><span t-field="worksheet.x_studio_tipo_de_candado"/></td>
+    <td class="label">Facilidad de Acceso:</td><td><span t-field="worksheet.x_studio_facilidad_de_acceso_2"/></td>
+  </tr>
+  <tr>
+    <td class="label">Clave de Candado:</td><td><span t-field="worksheet.x_studio_clave_de_candado"/></td>
+    <td class="label">Tipo de Lugar:</td><td><span t-field="worksheet.x_studio_tipo_de_lugar"/></td>
+  </tr>
+  <tr>
+    <td class="label">Descripción de Acceso:</td>
+    <td colspan="3"><span t-field="worksheet.x_studio_descripcin_de_acceso_1"/></td>
+  </tr>
+</table>
+
+
+
+<!-- ======== EVIDENCIAS FOTOGRÁFICAS ======== -->
+<table class="evidencias-container" style="width:100%; margin-top:15px; border-collapse:collapse;">
+  <tr><th colspan="2" class="subtitulo">EVIDENCIAS FOTOGRÁFICAS</th></tr>
+  <tr>
+    <!-- Columna izquierda -->
+    <td style="width:50%; vertical-align:top; padding:6px;">
+      <t t-set="image_number" t-value="1"/>
+      <t t-foreach="[
+          'x_studio_binary_field_5u1_1j6de7vli',
+          'x_studio_binary_field_6nk_1j6de8gdb',
+          'x_studio_binary_field_2b_1j6de8qn3',
+          'x_studio_binary_field_268_1j6de99kq',
+          'x_studio_binary_field_71r_1j6de9fci',
+          'x_studio_binary_field_87v_1j6deag7l'
+        ]" t-as="field_name">
+        <div class="evidencia-card">
+          <div class="img-title">Imagen <t t-esc="image_number"/></div>
+          <t t-if="worksheet[field_name]">
+            <div class="custom-image" style="text-align:center;">
+              <img t-att-src="'data:image/png;base64,%s' % worksheet[field_name].decode('utf-8')"
+                   style="max-width:95%; max-height:240px; border-radius:6px; border:1px solid #ddd;"/>
+            </div>
+          </t>
+          <t t-if="not worksheet[field_name]">
+            <div class="custom-image text-muted"
+                 style="height:240px; display:flex; align-items:center; justify-content:center; border:1px dashed #ccc; border-radius:6px; color:#888;">
+              Sin imagen
+            </div>
+          </t>
+        </div>
+        <t t-set="image_number" t-value="image_number + 1"/>
+      </t>
+    </td>
+
+    <!-- Columna derecha -->
+    <td style="width:50%; vertical-align:top; padding:6px;">
+      <t t-set="image_number" t-value="7"/>
+      <t t-foreach="[
+          'x_studio_binary_field_6fp_1j6de864t',
+          'x_studio_binary_field_79n_1j6de8lad',
+          'x_studio_binary_field_aa_1j6de91gs',
+          'x_studio_binary_field_3c9_1j6de9ql5',
+          'x_studio_binary_field_2pc_1j6dea7ph',
+          'x_studio_binary_field_5di_1j6dealgk'
+        ]" t-as="field_name">
+        <div class="evidencia-card">
+          <div class="img-title">Imagen <t t-esc="image_number"/></div>
+          <t t-if="worksheet[field_name]">
+            <div class="custom-image" style="text-align:center;">
+              <img t-att-src="'data:image/png;base64,%s' % worksheet[field_name].decode('utf-8')"
+                   style="max-width:95%; max-height:240px; border-radius:6px; border:1px solid #ddd;"/>
+            </div>
+          </t>
+          <t t-if="not worksheet[field_name]">
+            <div class="custom-image text-muted"
+                 style="height:240px; display:flex; align-items:center; justify-content:center; border:1px dashed #ccc; border-radius:6px; color:#888;">
+              Sin imagen
+            </div>
+          </t>
+        </div>
+        <t t-set="image_number" t-value="image_number + 1"/>
+      </t>
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+</t>

@@ -1,0 +1,207 @@
+t t-name="x_project_task_worksheet_template_21">
+  <div>
+    <!-- ======== ESTILOS ======== -->
+    <style>
+      /* === ENCABEZADO PRINCIPAL === */
+      .header-reporte {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+      }
+
+      .header-reporte .titulo {
+        background-color: #000;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 6px;
+      }
+
+      .header-reporte .subtitulo {
+        background-color: #d72626;
+        color: #fff;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: center;
+        padding: 6px;
+      }
+
+      .header-reporte th,
+      .header-reporte td {
+        border: 1px solid #000;
+        padding: 6px 8px;
+        vertical-align: middle;
+        text-align: left;
+        background-color: #fff;
+      }
+
+      .header-reporte .label {
+        font-weight: bold;
+        background-color: #f9f9f9;
+        text-align: left;
+        width: 25%;
+      }
+
+      .logo {
+        width: 120px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+      }
+
+      /* === SECCIONES === */
+      .section-title {
+        background-color: #000;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: bold;
+        padding: 6px;
+        margin-top: 12px;
+        border: 1px solid #000;
+      }
+
+      .comentarios {
+        border: 1px solid #000;
+        border-radius: 2px;
+        background-color: #fff;
+        padding: 10px 12px;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.4;
+        min-height: 120px;
+        white-space: pre-wrap;
+      }
+
+      .custom-image {
+        width: 350px;
+        height: 350px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      .custom-image img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+    </style>
+
+    <!-- ======== ENCABEZADO ======== -->
+    <table class="header-reporte">
+      <tr>
+        <th colspan="12" class="titulo">PHOENIX TOWER INTERNATIONAL</th>
+      </tr>
+      <tr>
+        <th colspan="12" class="subtitulo">REPORTE DE VISITA FALLIDA</th>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align:left;">
+          <t t-if="worksheet.x_studio_logo_cliente">
+            <img class="logo" t-att-src="image_data_uri(worksheet.x_studio_logo_cliente)"/>
+          </t>
+        </td>
+        <td colspan="4" style="text-align:center; font-weight:bold;">
+          Reporte <span t-field="worksheet.x_studio_nombre_tarea"/>
+        </td>
+             <td colspan="4" style="text-align:right;">
+              <img class="logo" src="https://www.gh3.cl/images/gh3_final_logo_RGB.png"/>
+            </td>
+      </tr>
+    </table>
+
+    <!-- ======== INFORMACIÓN GENERAL ======== -->
+    <table class="header-reporte">
+      <tr>
+        <td class="label">Cliente:</td>
+        <td><span t-field="worksheet.x_studio_cliente"/></td>
+        <td class="label">ID Cliente:</td>
+        <td><span t-field="worksheet.x_studio_id_cliente"/></td>
+      </tr>
+      <tr>
+        <td class="label">Nombre Tarea:</td>
+        <td><span t-field="worksheet.x_studio_nombre_tarea"/></td>
+        <td class="label">Región:</td>
+        <td><span t-field="worksheet.x_studio_regin"/></td>
+      </tr>
+      <tr>
+        <td class="label">Sitio de Actividad:</td>
+        <td><span t-field="worksheet.x_studio_sitio_de_actividad"/></td>
+        <td class="label">Fecha:</td>
+        <td><span t-field="worksheet.x_studio_fecha"/></td>
+      </tr>
+    </table>
+
+    <!-- ======== CONDICIONES DE ACCESO ======== -->
+    <table class="header-reporte">
+      <tr>
+        <th colspan="12" class="subtitulo">CONDICIONES DE ACCESO</th>
+      </tr>
+      <tr>
+        <td class="label">Medio de Acceso:</td>
+        <td><span t-field="worksheet.x_studio_medio_de_acceso"/></td>
+        <td class="label">Facilidad de Acceso:</td>
+        <td><span t-field="worksheet.x_studio_facilidad_de_acceso"/></td>
+      </tr>
+      <tr>
+        <td class="label">Tipo de Camino:</td>
+        <td><span t-field="worksheet.x_studio_tipo_de_camino"/></td>
+        <td class="label">Tipo de Sitio:</td>
+        <td><span t-field="worksheet.x_studio_tipo_de_sitio"/></td>
+      </tr>
+      <tr>
+        <td class="label">Comentario de Acceso:</td>
+        <td colspan="3"><span t-field="worksheet.x_studio_comentario_acceso"/></td>
+      </tr>
+    </table>
+
+    <!-- ======== EVIDENCIAS ======== -->
+    <div class="section-title">EVIDENCIAS FOTOGRÁFICAS</div>
+    <table class="header-reporte">
+      <tr>
+        <td style="text-align:center;">
+          <div class="custom-image">
+            <t t-if="worksheet.x_studio_evidencia_n1">
+              <img t-att-src="image_data_uri(worksheet.x_studio_evidencia_n1)"/>
+            </t>
+          </div>
+          <div style="text-align:center; font-weight:bold;">Evidencia N°1</div>
+        </td>
+        <td style="text-align:center;">
+          <div class="custom-image">
+            <t t-if="worksheet.x_studio_evidencia_n2">
+              <img t-att-src="image_data_uri(worksheet.x_studio_evidencia_n2)"/>
+            </t>
+          </div>
+          <div style="text-align:center; font-weight:bold;">Evidencia N°2</div>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align:center;">
+          <div class="custom-image">
+            <t t-if="worksheet.x_studio_evidencia_n3">
+              <img t-att-src="image_data_uri(worksheet.x_studio_evidencia_n3)"/>
+            </t>
+          </div>
+          <div style="text-align:center; font-weight:bold;">Evidencia N°3</div>
+        </td>
+        <td style="text-align:center;">
+          <div class="custom-image">
+            <t t-if="worksheet.x_studio_evidencia_n4">
+              <img t-att-src="image_data_uri(worksheet.x_studio_evidencia_n4)"/>
+            </t>
+          </div>
+          <div style="text-align:center; font-weight:bold;">Evidencia N°4</div>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+</t>

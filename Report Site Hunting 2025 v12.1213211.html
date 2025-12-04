@@ -1,0 +1,789 @@
+<t t-name="x_project_task_worksheet_template_18">
+    
+<!-- ======== ESTILOS INTEGRADOS PARA REPORTE PDF ======== -->
+<!-- ======== ESTILOS INTEGRADOS PARA REPORTE PDF ======== -->
+<style>
+   /* === BASE GENERAL === */
+   body {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #000;
+      background-color: #fff;
+   }
+
+   table {
+      width: 100%;
+      border-collapse: collapse;
+   }
+
+   th, td {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      vertical-align: middle;
+      text-align: left;
+      background-color: #fff;
+   }
+
+   /* ======== ENCABEZADO PRINCIPAL ======== */
+   .header-reporte {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 10px;
+      table-layout: fixed; /* fuerza proporciones consistentes */
+   }
+
+   /* Banda negra superior */
+   .header-reporte .titulo {
+      background-color: #000;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 6px;
+   }
+
+   /* Banda roja secundaria */
+   .header-reporte .subtitulo {
+      background-color: #d72626;
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px;
+   }
+
+   /* Etiquetas */
+   .header-reporte .label {
+      font-weight: bold;
+      font-size: 12px;
+      background-color: #f9f9f9;
+      text-align: left;
+      width: 20%;
+   }
+
+   /* Anchos de columnas */
+   .header-reporte td:nth-child(1),
+   .header-reporte td:nth-child(3) {
+      width: 22%;
+      background-color: #f9f9f9;
+      font-weight: bold;
+   }
+
+   .header-reporte td:nth-child(2),
+   .header-reporte td:nth-child(4) {
+      width: 28%;
+   }
+
+        /* Evita afectar spans con clase no-span-format */
+        .header-reporte td span:not(.no-span-format) {
+            word-wrap: break-word;
+            white-space: normal;
+            display: block;
+        }
+
+   /* Logos */
+   .header-reporte .logo {
+      max-height: 60px;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+   }
+
+   .logo {
+      width: 120px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+   }
+
+   /* ======== SECCIONES DE EVIDENCIA Y COMENTARIOS ======== */
+   .evidencia-title, .comentarios-title {
+      background-color: #d72626;
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 6px;
+      border: 1px solid #000;
+      margin: 14px 0 8px 0;
+      font-size: 13px;
+   }
+
+   /* Tarjeta de evidencia */
+   .evidencia-card {
+      background: #fff;
+      padding: 8px;
+      margin-bottom: 12px;
+      page-break-inside: avoid;
+      border: none;
+      box-shadow: none;
+   }
+
+   /* Título de imagen */
+   .img-title {
+      background-color: #d72626;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      padding: 4px 6px;
+      font-size: 12px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #000;
+      text-transform: uppercase;
+   }
+
+   /* Contenedor de imagen */
+   .custom-image {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      overflow: hidden;
+      border: none;
+      padding: 0;
+      background: none;
+      box-shadow: none;
+   }
+
+   .custom-image img {
+      width: 100%;
+      height: auto;
+      object-fit: none; /* muestra la imagen completa sin recortes */
+      image-orientation: from-image; /* respeta orientación original EXIF */
+      transform: none; /* sin rotaciones forzadas */
+      max-height: none;
+      image-rendering: auto;
+      display: block;
+      margin: 0 auto;
+   }
+
+   /* Contenedor GPS o imagen general */
+   .gps-container {
+      padding: 6px;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+   }
+
+   /* Texto de comentario */
+   .comentario-text {
+      border-top: 1px solid #000;
+      padding-top: 6px;
+      margin-top: 8px;
+      background: #fff;
+      white-space: pre-wrap;
+      line-height: 1.35;
+      font-size: 12px;
+   }
+
+   /* Etiquetas de información */
+   .info-label {
+      font-weight: bold;
+      display: inline-block;
+      min-width: 90px;
+   }
+
+   /* ======== UTILIDADES ======== */
+   .text-center { text-align: center; }
+   .text-right { text-align: right; }
+   .mb-3 { margin-bottom: 12px; }
+   .mt-4 { margin-top: 16px; }
+
+   /* ======== CONTROL DE PÁGINA ======== */
+   .pagina-sola {
+      page-break-before: always;
+      page-break-after: avoid;
+      margin-top: 15px;
+   }
+
+   /* ======== VERSIÓN PARA IMPRESIÓN ======== */
+   @media print {
+      body {
+         -webkit-print-color-adjust: exact;
+         print-color-adjust: exact;
+      }
+      .gps-container { min-height: 280px; }
+      .custom-image img { width: 100%; height: auto; max-height: none; }
+      .evidencia-card, .header-reporte, .pagina-sola {
+         page-break-inside: avoid;
+      }
+   }
+</style>
+
+
+
+
+
+    <!-- ======== ENCABEZADO ======== -->
+<table class="header-reporte">
+  <tr>
+    <th colspan="12" class="titulo">PHOENIX TOWER INTERNATIONAL</th>
+  </tr>
+  <tr>
+    <th colspan="12" class="subtitulo">BÚSQUEDA DE SITIO</th>
+  </tr>
+  <tr>
+    <td colspan="4" class="centrado">
+      <img class="logo" t-if="worksheet.x_studio_logo_cliente" t-att-src="image_data_uri(worksheet.x_studio_logo_cliente)"/>
+    </td>
+    <td colspan="4" style="text-align:center; font-weight:bold;">
+      Site Hunting <span t-field="worksheet.x_studio_id_cliente"/>
+    </td>
+     <td colspan="4" style="text-align:center; font-weight:bold;">
+      Alternativa <span t-field="worksheet.x_studio_alternativa"/>
+    </td>
+  
+          
+
+
+
+
+  </tr> 
+</table> 
+
+<!-- ======== INFORMACIÓN GENERAL ======== -->
+<table class="header-reporte">
+  <tr>
+    <td class="label">Región:</td><td><span t-field="worksheet.x_studio_regin"/></td>
+    <td class="label">Operador:</td><td><span t-field="worksheet.x_studio_operador"/></td>
+  </tr>
+  <tr>
+    <td class="label">Fecha de Inicio:</td><td><span t-field="worksheet.x_studio_fecha_visita_sgr"/></td>
+    <td class="label">ROL:</td><td><span t-field="worksheet.x_studio_rol"/></td>
+  </tr>
+  <tr>
+    <td class="label">Latitud Nominal:</td><td><span t-field="worksheet.x_studio_latitud" t-options="{&quot;digits&quot;:[12,6]}"/></td>
+    <td class="label">ID Operador:</td><td><span t-field="worksheet.x_studio_id_operador"/></td>
+  </tr>
+  <tr>
+    <td class="label">Longitud Nominal:</td><td><span t-field="worksheet.x_studio_longitud" t-options="{&quot;digits&quot;:[12,6]}"/></td>
+    <td class="label">Foja / Número / Año:</td><td><span t-field="worksheet.x_studio_nmerofojaao"/></td>
+  </tr>
+</table>
+
+<!-- ======== IDENTIFICACIÓN DEL CANDIDATO ======== -->
+<table class="header-reporte">
+  <tr><th colspan="12" class="subtitulo">IDENTIFICACIÓN DEL CANDIDATO</th></tr>
+</table>
+
+<table class="header-reporte">
+  <tr>
+    <td class="label">Nombre del Propietario:</td><td><span t-field="worksheet.x_studio_nombre_del_propietario"/></td>
+    <td class="label">Teléfono:</td><td><span t-field="worksheet.x_studio_telfono"/></td>
+  </tr>
+  <tr>
+    <td class="label">Correo:</td><td><span t-field="worksheet.x_studio_correo"/></td>
+    <td class="label">Fecha de Nacimiento:</td><td><span t-field="worksheet.x_studio_fecha_de_nacimiento"/></td>
+  </tr>
+  <tr>
+    <td class="label">Estado Civil:</td><td><span t-field="worksheet.x_studio_estado_civil"/></td>
+    <td class="label">Tipo de Persona:</td><td><span t-field="worksheet.x_studio_tipo_de_persona"/></td>
+  </tr>
+  <tr>
+    <td class="label">Comuna:</td><td><span t-field="worksheet.x_studio_comuna"/></td>
+    <td class="label">Sitio de Actividad:</td><td><span t-field="worksheet.x_studio_sitio_de_actividad"/></td>
+  </tr>
+  <tr>
+    <td class="label">Dirección:</td><td><span t-field="worksheet.x_studio_direccin"/></td>
+    <td class="label">Latitud Cliente:</td><td><span t-field="worksheet.x_studio_latitud_cliente" t-options="{&quot;digits&quot;:[12,6]}"/></td>
+  </tr>
+  <tr>
+    <td class="label">Distancia a Punto Nominal:</td><td><span t-field="worksheet.x_studio_distancia_a_punto_nominal"/></td>
+    <td class="label">Longitud Cliente:</td><td><span t-field="worksheet.x_studio_longitud_cliente" t-options="{&quot;digits&quot;:[12,6]}"/></td>
+  </tr>
+  <tr>
+    <td class="label">Cota MSNM:</td><td><span t-field="worksheet.x_studio_cota_msnm"/></td>
+    <td class="label"/><td/>
+  </tr>
+</table>
+
+<!-- ======== RENTA Y LÍNEAS ======== -->
+<table class="header-reporte">
+  <tr><th colspan="12" class="subtitulo">RENTA Y LÍNEAS</th></tr>
+</table>
+
+<table class="header-reporte">
+  <tr>
+    <td class="label">Superficie Disponible (m²):</td><td><span t-field="worksheet.x_studio_superficie_disponible_m_1"/></td>
+    <td class="label">M2 Empalme:</td><td><span t-field="worksheet.x_studio_m2_empalme"/></td>
+  </tr>
+  <tr>
+    <td class="label">Nivel de Tensión:</td><td><span t-field="worksheet.x_studio_nivel_de_tensin"/></td>
+    <td class="label">Tipo de Empalme:</td><td><span t-field="worksheet.x_studio_tipo_de_empalme_1"/></td>
+  </tr>
+  <tr>
+    <td class="label">Compañía Eléctrica:</td><td><span t-field="worksheet.x_studio_compaa_elctrica"/></td>
+    <td class="label">Tipo de Energía:</td><td><span t-field="worksheet.x_studio_tipo_de_energa"/></td>
+  </tr>
+  <tr>
+    <td class="label">Renta UF Sitio Mensual:</td><td><span t-field="worksheet.x_studio_renta_uf_sitio_mensual"/></td>
+    <td class="label">LAT Poste de Conexión:</td><td><span t-field="worksheet.x_studio_lat_poste_de_conexin"/></td>
+  </tr>
+  <tr>
+    <td class="label">Número de Poste:</td><td><span t-field="worksheet.x_studio_numero_de_poste"/></td>
+    <td class="label">LONG Poste de Conexión:</td><td><span t-field="worksheet.x_studio_long_poste_de_conexin"/></td>
+  </tr>
+  <tr>
+    <td class="label">Línea Provisoria:</td><td><span t-field="worksheet.x_studio_linea_provisoria"/></td>
+    <td class="label">Mts Línea Provisoria:</td><td><span t-field="worksheet.x_studio_mts_linea_provisoria"/></td>
+  </tr>
+</table>
+
+<!-- ======== ANTECEDENTES SITIO PROYECTADO ======== -->
+<table class="header-reporte">
+  <tr><th colspan="12" class="subtitulo">ANTECEDENTES SITIO PROYECTADO</th></tr>
+</table>
+
+<table class="header-reporte"> 
+  <tr>
+    <td class="label">Altura Torre Inmobiliaria (m):</td><td><span t-field="worksheet.x_studio_altura_torre_inmo"/></td>
+    <td class="label">Tramo Operador:</td><td><span t-field="worksheet.x_studio_tramo_operador"/></td>
+  </tr>
+  <tr>
+    <td class="label">Tipo de Equipamiento:</td><td><span t-field="worksheet.x_studio_tipo_de_equipamiento"/></td>
+    <td class="label">Tipo de Estructura:</td><td><span t-field="worksheet.x_studio_tipo_de_estructura"/></td>
+  </tr>
+  <tr>
+    <td class="label">Altura de Edificio (m):</td><td><span t-field="worksheet.x_studio_altura_de_edificio"/></td>
+    <td class="label"/><td/>
+  </tr>
+</table>
+
+
+<!-- ======== IMAGEN EXCLUSIVA: CROQUIS DE SITIO PROYECTADO ======== -->
+<div class="pagina-sola" style="        page-break-before: always;         page-break-after: always;         margin-top: 20px;         padding: 10px;        text-align: center;      ">
+
+  <!-- ======== TÍTULO ======== -->
+  <div class="evidencia-title">Croquis de sitio proyectado</div>
+
+
+  <!-- ======== DATOS DEL SITIO ======== -->
+  <div style="         text-align: center;          font-size: 13px;          margin-bottom: 12px;          color: #333;          line-height: 1.6;       ">
+    <t t-if="worksheet.x_studio_superficie_disponible_m_1">
+      <div><strong>Superficie disponible:</strong> <t t-esc="worksheet.x_studio_superficie_disponible_m_1"/> m²</div>
+    </t>
+    <t t-if="worksheet.x_studio_altura_torre_inmo">
+      <div><strong>Altura Torre:</strong> <t t-esc="worksheet.x_studio_altura_torre_inmo"/> m</div>
+    </t>
+    <t t-if="worksheet.x_studio_tipo_de_estructura">
+      <div><strong>Tipo de estructura:</strong> <t t-esc="worksheet.x_studio_tipo_de_estructura"/></div>
+    </t>
+  </div>
+
+  <!-- ======== IMAGEN DEL CROQUIS ======== -->
+  <div class="evidencia-card" style="          width: 100%;           max-width: 100%;           margin: 0 auto;           border: none;           text-align: center;           page-break-inside: avoid;        ">
+    <t t-if="worksheet.x_studio_acceso_a_sitio">
+      <div style="             width: 100%;              display: flex;              justify-content: center;              align-items: center;              border: none;           ">
+        <img t-att-src="'data:image/png;base64,%s' % worksheet.x_studio_acceso_a_sitio.decode('utf-8')" style="                width: 95%;                height: auto;                max-height: 85vh;                 object-fit: contain;                border: none;                border-radius: 0;                image-rendering: -webkit-optimize-contrast;                -webkit-print-color-adjust: exact;                print-color-adjust: exact;                display: block;                margin: 0 auto;                background: none;              "/>
+      </div>
+    </t>
+    <t t-if="not worksheet.x_studio_acceso_a_sitio">
+      <div style="             height: 500px;              display: flex;              align-items: center;              justify-content: center;              border: 1px dashed #bbb;              border-radius: 6px;              color: #888;              font-style: italic;           ">
+        Sin imagen disponible
+      </div>
+    </t>
+  </div>
+</div>
+<!-- ===================== SECCIÓN: ACCESO EXISTENTE A SITIO ===================== -->
+<div class="pagina-sola" style="page-break-before: always; margin-top: 20px;">
+  <div class="evidencia-title">Acceso y Delimitación del Sitio</div>
+
+  <table class="evidencias-container" style="width:100%; margin-top:10px; border-collapse:collapse;">
+    <tr>
+      <td style="width:100%; vertical-align:top; padding:6px;">
+
+        <!-- IMAGEN 1: ACCESO EXISTENTE -->
+        <t t-if="worksheet['x_studio_acceso_existente_a_sitio']">
+          <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom: 18px;">
+            <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+              Acceso a Sitio
+            </div>
+
+            <div class="custom-image" style="text-align:center;">
+              <img t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_acceso_existente_a_sitio'].decode('utf-8')" style="width:100%; height:auto; max-height:450px; object-fit:contain; border:none;                           image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact; print-color-adjust:exact;"/>
+            </div>
+          </div>
+        </t>
+
+        <!-- IMAGEN 2: DETALLE POLÍGONO (ABAJO) -->
+        <t t-if="worksheet['x_studio_detalle_poligono']">
+          <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom: 10px;">
+            <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+              Detalle Polígono
+            </div>
+
+            <div class="custom-image" style="text-align:center;">
+              <img t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_detalle_poligono'].decode('utf-8')" style="width:100%; height:auto; max-height:450px; object-fit:contain; border:none;                           image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact; print-color-adjust:exact;"/>
+            </div>
+          </div>
+        </t>
+
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- ===================== SECCIÓN: FOTOS DE PROPIEDAD ===================== -->
+<div class="pagina-sola" style="page-break-before: always; margin-top: 20px;">
+  <div class="evidencia-title">Fotos de Propiedad</div>
+
+  <table class="evidencias-container" style="width:100%; margin-top:10px; border-collapse:collapse;">
+    <tr>
+      <td style="width:100%; vertical-align:top; padding:6px;">
+
+        <!-- FOTO PROPIEDAD 1 -->
+        <t t-if="worksheet['x_studio_foto_propiedad']">
+          <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom: 20px;">
+            <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+              Foto Propiedad
+            </div>
+            <div class="custom-image" style="text-align:center;">
+              <img t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_foto_propiedad'].decode('utf-8')"
+                   style="width:100%; height:auto; max-height:420px; object-fit:contain; border:none;
+                          image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact; print-color-adjust:exact;"/>
+            </div>
+          </div>
+        </t>
+
+        <!-- FOTO PROPIEDAD 2 -->
+        <t t-if="worksheet['x_studio_foto_propiedad_1']">
+          <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom: 10px;">
+            <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+              Foto Propiedad (Complementaria)
+            </div>
+            <div class="custom-image" style="text-align:center;">
+              <img t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_foto_propiedad_1'].decode('utf-8')"
+                   style="width:100%; height:auto; max-height:420px; object-fit:contain; border:none;
+                          image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact; print-color-adjust:exact;"/>
+            </div>
+          </div>
+        </t>
+
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<t t-set="altura" t-value="worksheet.x_studio_altura_torre_inmo"/>
+
+<!-- ===================== SECCIÓN: PANORÁMICA DEL SITIO ===================== -->
+<div class="pagina-sola" style="page-break-before: always; margin-top:20px;">
+
+<t t-set="imagenes_all" t-value="[     ('x_studio_fachada', 'Vista Panorámica 0°'),     ('x_studio_entorno', 'Vista Panorámica 30°'),     ('x_studio_vista_area', 'Vista Panorámica 60°'),     ('x_studio_binary_field_175_1j5p419k9', 'Vista Panorámica 90°'),     ('x_studio_vista_panormica_120_h36m', 'Vista Panorámica 120°'),     ('x_studio_vista_panormica_150_h36m', 'Vista Panorámica 150°'),     ('x_studio_vista_panormica_180_h36m', 'Vista Panorámica 180°'),     ('x_studio_vista_panormica_210_h36m', 'Vista Panorámica 210°'),     ('x_studio_vista_panormica_240_h36m', 'Vista Panorámica 240°'),     ('x_studio_vista_panormica_270_h36m', 'Vista Panorámica 270°'),     ('x_studio_vista_panormica_300_h36m', 'Vista Panorámica 300°'),     ('x_studio_vista_panormica_330_h36m', 'Vista Panorámica 330°') ]"/>
+
+<t t-set="total" t-value="len(imagenes_all)"/>
+
+<!-- ===================== RECORRER EN BLOQUES DE 6 ===================== -->
+<t t-foreach="range(0, total, 6)" t-as="start">
+
+    <!-- ===================== HOJA ===================== -->
+    <div style="page-break-before: always;">
+
+        <!-- TÍTULO EN CADA HOJA -->
+        <div class="evidencia-title" style="margin-bottom:10px;">
+            Panorámica del Sitio – Altura <t t-esc="altura"/> m
+        </div>
+
+        <table class="evidencias-container" style="width:100%; border-collapse:collapse;">
+
+            <!-- RECORRIDO 2 EN 2 PARA ARMAR PARES DE IMÁGENES -->
+            <t t-foreach="range(start, min(start+6, total), 2)" t-as="i">
+
+                <tr>
+
+                    <!-- =============== COLUMNA IZQUIERDA =============== -->
+                    <td style="width:50%; vertical-align:top; padding:6px;">
+                        <t t-if="worksheet[imagenes_all[i][0]]">
+                            <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom:10px;">
+                                <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+                                    <t t-esc="imagenes_all[i][1]"/> h=<t t-esc="altura"/>(m)
+                                </div>
+                                <div class="custom-image" style="text-align:center;">
+                                    <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_all[i][0]].decode('utf-8')" style="width:100%; height:auto; max-height:330px; object-fit:contain; border:none;                                                 image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact;"/>
+                                </div>
+                            </div>
+                        </t>
+                    </td>
+
+                    <!-- =============== COLUMNA DERECHA =============== -->
+                    <td style="width:50%; vertical-align:top; padding:6px;">
+                        <t t-if="i+1 &lt; total and worksheet[imagenes_all[i+1][0]]">
+                            <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom:10px;">
+                                <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+                                    <t t-esc="imagenes_all[i+1][1]"/> h=<t t-esc="altura"/>(m)
+                                </div>
+                                <div class="custom-image" style="text-align:center;">
+                                    <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_all[i+1][0]].decode('utf-8')" style="width:100%; height:auto; max-height:330px; object-fit:contain; border:none;                                                 image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact;"/>
+                                </div>
+                            </div>
+                        </t>
+                    </td>
+
+                </tr>
+
+            </t>
+
+        </table>
+
+    </div>
+
+</t>
+
+</div>
+
+
+
+
+
+<!-- ===================== SECCIÓN: PANORÁMICAS NORTE / SUR 180 ===================== -->
+<div class="pagina-sola" style="page-break-before: always; margin-top: 20px;">
+  <div class="evidencia-title">Panorámicas 180° Norte y Sur</div>
+
+  <table class="evidencias-container" style="width:100%; margin-top:10px; border-collapse:collapse;">
+    <tr>
+      <td style="width:100%; vertical-align:top; padding:6px;">
+
+        <!-- FOTO NORTE 180° -->
+        <t t-if="worksheet['x_studio_vista_panormica_al_norte_180']">
+          <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom: 20px;">
+            <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+              Vista Panorámica al Norte 180°
+            </div>
+            <div class="custom-image" style="text-align:center;">
+              <img t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_vista_panormica_al_norte_180'].decode('utf-8')" style="width:100%; height:auto; max-height:420px; object-fit:contain; border:none;                           image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact; print-color-adjust:exact;"/>
+            </div>
+          </div>
+        </t>
+
+        <!-- FOTO SUR 180° -->
+        <t t-if="worksheet['x_studio_vista_panormica_al_sur_180']">
+          <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom: 10px;">
+            <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+              Vista Panorámica al Sur 180°
+            </div>
+            <div class="custom-image" style="text-align:center;">
+              <img t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_vista_panormica_al_sur_180'].decode('utf-8')" style="width:100%; height:auto; max-height:420px; object-fit:contain; border:none;                           image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact; print-color-adjust:exact;"/>
+            </div>
+          </div>
+        </t>
+
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+
+
+
+
+<!-- ====================== FIN HOJA ACCESOS ELÉCTRICOS ====================== -->
+
+
+
+
+<!-- ===================== SECCIÓN: PROYECCIÓN DEL SITIO - ANTES / DESPUÉS ===================== -->
+<div class="pagina-sola" style="page-break-before: always; margin-top: 20px;">
+
+  <div class="evidencia-title">Proyección del Sitio (Antes / Después)</div>
+
+  <table class="evidencias-container" style="width:100%; margin-top:10px; border-collapse:collapse;">
+    <tr>
+      <td style="width:100%; vertical-align:top; padding:6px;">
+
+        <!-- ANTES -->
+        <t t-if="worksheet['x_studio_lugar_propuesto_para_la_antena']">
+          <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom: 20px;">
+            <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+              Antes – Lugar Propuesto para la Antena
+            </div>
+            <div class="custom-image" style="text-align:center;">
+              <img
+                t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_lugar_propuesto_para_la_antena'].decode('utf-8')"
+                style="width:100%; height:auto; max-height:420px; object-fit:contain; border:none;
+                       image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact; print-color-adjust:exact;"
+              />
+            </div>
+          </div>
+        </t>
+
+        <!-- DESPUÉS (PROYECTADO) -->
+        <t t-if="worksheet['x_studio_proyectado']">
+          <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom: 10px;">
+            <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+              Después – Proyección Sitio Nuevo
+            </div>
+            <div class="custom-image" style="text-align:center;">
+              <img
+                t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_proyectado'].decode('utf-8')"
+                style="width:100%; height:auto; max-height:420px; object-fit:contain; border:none;
+                       image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact; print-color-adjust:exact;"
+              />
+            </div>
+          </div>
+        </t>
+
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+<!-- ===================== SECCIÓN: ACCESOS ELÉCTRICOS ===================== -->
+<div class="pagina-sola" style="page-break-before: always; margin-top:20px;">
+
+<t t-set="imagenes_electricidad" t-value="[
+    ('x_studio_fotos_linea_elctrica_1', 'Línea Eléctrica 1'),
+    ('x_studio_fotos_linea_elctrica', 'Línea Eléctrica 2'),
+    ('x_studio_foto_poste_de_conexin', 'Poste de Conexión'),
+    ('x_studio_foto_le_proyectada', 'Línea Eléctrica Proyectada')
+]"/>
+
+<t t-set="total_elec" t-value="len(imagenes_electricidad)"/>
+
+<!-- ===================== RECORRER EN BLOQUES DE 6 ===================== -->
+<t t-foreach="range(0, total_elec, 6)" t-as="start_elec">
+
+    <!-- ===================== HOJA ===================== -->
+    <div style="page-break-before: always;">
+
+        <!-- TÍTULO EN CADA HOJA -->
+        <div class="evidencia-title" style="margin-bottom:10px;">
+            Accesos Eléctricos / Fibra
+        </div>
+
+        <table class="evidencias-container" style="width:100%; border-collapse:collapse;">
+
+            <!-- RECORRIDO 2 EN 2 PARA ARMAR PARES -->
+            <t t-foreach="range(start_elec, min(start_elec+6, total_elec), 2)" t-as="i">
+
+                <tr>
+
+                    <!-- =============== COLUMNA IZQUIERDA =============== -->
+                    <td style="width:50%; vertical-align:top; padding:6px;">
+                        <t t-if="worksheet[imagenes_electricidad[i][0]]">
+                            <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom:10px;">
+                                <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+                                    <t t-esc="imagenes_electricidad[i][1]"/>
+                                </div>
+                                <div class="custom-image" style="text-align:center;">
+                                    <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_electricidad[i][0]].decode('utf-8')"
+                                         style="width:100%; height:auto; max-height:330px; object-fit:contain; border:none;
+                                                image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact;"/>
+                                </div>
+                            </div>
+                        </t>
+                    </td>
+
+                    <!-- =============== COLUMNA DERECHA =============== -->
+                    <td style="width:50%; vertical-align:top; padding:6px;">
+                        <t t-if="i+1 &lt; total_elec and worksheet[imagenes_electricidad[i+1][0]]">
+                            <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom:10px;">
+                                <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+                                    <t t-esc="imagenes_electricidad[i+1][1]"/>
+                                </div>
+                                <div class="custom-image" style="text-align:center;">
+                                    <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_electricidad[i+1][0]].decode('utf-8')"
+                                         style="width:100%; height:auto; max-height:330px; object-fit:contain; border:none;
+                                                image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact;"/>
+                                </div>
+                            </div>
+                        </t>
+                    </td>
+
+                </tr>
+
+            </t>
+
+        </table>
+
+    </div>
+
+</t>
+
+</div>
+
+
+
+<!-- ===================== SECCIÓN: PROYECCIÓN DEL SITIO ===================== -->
+<t t-set="imagenes_proyeccion" t-value="[     ('x_studio_proyectado', 'Proyectado'),     ('x_studio_proyectado_1', 'Proyectado'),     ('x_studio_binary_field_9gr_1j5p471l8', 'Proyectado'),     ('x_studio_foto_le_proyectada', 'Foto LE Proyectada'),     ('x_studio_lugar_propuesto_para_la_antena', 'Lugar Propuesto para la Antena'),     ('x_studio_vista_hacia_los_posibles_sectores_de_cobertura', 'Sectores de Cobertura') ]"/>
+
+<t t-set="total_proy" t-value="len(imagenes_proyeccion)"/>
+
+<div class="pagina-sola" style="page-break-before: always; margin-top:20px;">
+
+<!-- ===================== BLOQUES DE 6 IMÁGENES ===================== -->
+<t t-foreach="range(0, total_proy, 6)" t-as="start">
+
+    <!-- ===================== HOJA ===================== -->
+    <div style="page-break-before: always;">
+
+        <!-- TÍTULO EN CADA HOJA -->
+        <div class="evidencia-title" style="margin-bottom:10px;">
+            Proyección del Sitio
+        </div>
+
+        <table class="evidencias-container" style="width:100%; border-collapse:collapse;">
+
+            <!-- RECORRIDO 2 EN 2 PARA FORMAR IZQ / DER -->
+            <t t-foreach="range(start, min(start+6, total_proy), 2)" t-as="i">
+
+                <tr>
+
+                    <!-- ===================== COLUMNA IZQUIERDA ===================== -->
+                    <td style="width:50%; vertical-align:top; padding:6px;">
+                        <t t-if="worksheet[imagenes_proyeccion[i][0]]">
+                            <div class="evidencia-card" style="page-break-inside:avoid; margin-bottom:10px;">
+                                <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+                                    <t t-esc="imagenes_proyeccion[i][1]"/>
+                                </div>
+                                <div class="custom-image" style="text-align:center;">
+                                    <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_proyeccion[i][0]].decode('utf-8')" style="width:100%; height:auto; max-height:330px; object-fit:contain; border:none;                                                 image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact;"/>
+                                </div>
+                            </div>
+                        </t>
+                    </td>
+
+                    <!-- ===================== COLUMNA DERECHA ===================== -->
+                    <td style="width:50%; vertical-align:top; padding:6px;">
+                        <t t-if="i+1 &lt; total_proy and worksheet[imagenes_proyeccion[i+1][0]]">
+                            <div class="evidencia-card" style="page-break-inside:avoid; margin-bottom:10px;">
+                                <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+                                    <t t-esc="imagenes_proyeccion[i+1][1]"/>
+                                </div>
+                                <div class="custom-image" style="text-align:center;">
+                                    <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_proyeccion[i+1][0]].decode('utf-8')" style="width:100%; height:auto; max-height:330px; object-fit:contain; border:none;                                                 image-rendering:-webkit-optimize-contrast; -webkit-print-color-adjust:exact;"/>
+                                </div>
+                            </div>
+                        </t>
+                    </td>
+
+                </tr>
+
+            </t>
+
+        </table>
+
+    </div>
+
+</t>
+
+</div>
+
+
+
+
+
+
+
+
+
+</t>

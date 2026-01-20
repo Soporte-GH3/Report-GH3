@@ -1,0 +1,263 @@
+<t t-name="x_project_task_worksheet_template_24">
+    <style>
+
+/* =====================================================
+   SITE HUNTING – ESTILO CORPORATIVO TÉCNICO
+   Compatible QWeb / PDF
+===================================================== */
+
+/* -------- CONTENEDORES -------- */
+
+.sh-bloque {
+  border: 1px solid #1f2a44;
+  padding: 6px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.img-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f2a44;
+  text-align: center;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* -------- TABLAS -------- */
+
+.header-reporte {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  color: #1f2a44;
+}
+
+.header-reporte th,
+.header-reporte td {
+  border: 1px solid #9aa4b2;
+  padding: 5px 6px;
+}
+
+.header-reporte th {
+  background-color: #e9edf3;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 10.5px;
+  letter-spacing: 0.4px;
+}
+
+/* -------- SUBTÍTULOS -------- */
+
+.subtitulo {
+  background-color: #e9edf3;
+  color: #1f2a44;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 6px;
+  border: 1px solid #1f2a44;
+}
+
+/* -------- CELDAS -------- */
+
+.text-center {
+  text-align: center;
+}
+
+.text-start {
+  text-align: left;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+
+.text-muted {
+  color: #6b7280;
+}
+
+.fst-italic {
+  font-style: italic;
+}
+
+/* -------- ESTADOS -------- */
+
+.text-success {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.text-danger {
+  color: #c62828;
+  font-weight: 600;
+}
+
+/* -------- FONDOS SUAVES -------- */
+
+.bg-light {
+  background-color: #f8f9fb;
+}
+
+.bg-secondary {
+  background-color: #e9edf3;
+}
+
+/* -------- ESPACIADOS -------- */
+
+.mt-2 {
+  margin-top: 6px;
+}
+
+.mt-4 {
+  margin-top: 12px;
+}
+
+/* -------- SVG / GRÁFICO -------- */
+
+.sh-bloque svg {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 320px; /* FIJO para PDF */
+}
+
+
+</style>
+
+    
+<table class="header-reporte mt-4" style="width:100%; table-layout:fixed;">
+  <tr>
+
+    <!-- ================= COLUMNA IZQUIERDA | TABLA ================= -->
+    <td style="width:50%; vertical-align: top; padding-right:10px;">
+
+      <!-- TÍTULO -->
+      <table class="header-reporte mb-2" style="width:100%;">
+        <tr>
+          <th class="subtitulo text-center">
+            INSPECCIÓN DE DEFLEXIÓN – SECTOR A
+          </th>
+        </tr>
+      </table>
+
+      <!-- ================= TABLA DATOS ================= -->
+      <table class="header-reporte mt-2" style="width:100%;">
+        <thead>
+          <tr>
+            <th class="text-center bg-secondary bg-opacity-15">Tramo Torre (mm)</th>
+            <th class="text-center bg-secondary bg-opacity-15">Deflexión Permisible<br/>(H / 400)</th>
+            <th class="text-center bg-secondary bg-opacity-15">Deflexión Medida</th>
+            <th class="text-center bg-secondary bg-opacity-15">Aplica</th>
+            <th class="text-start bg-secondary bg-opacity-15">Observaciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+            <tr>
+              <td class="text-center bg-light border-start border-secondary">
+                <t t-esc="line.x_studio_tramo_torre_sgr"/>
+              </td>
+
+              <td class="text-center bg-light border-start border-secondary">
+                <t t-esc="round((float(line.x_studio_tramo_torre_sgr or 0)) / 400, 2)"/>
+              </td>
+
+              <td class="text-center bg-light border-start border-secondary">
+                <t t-esc="line.x_studio_deflexin_medida_sgr"/>
+              </td>
+
+              <td class="text-center bg-light border-start border-secondary fw-semibold">
+                <t t-if="line.x_studio_cumple">
+                  <span class="text-success">✔ Cumple</span>
+                </t>
+                <t t-else="">
+                  <span class="text-danger">✖ No cumple</span>
+                </t>
+              </td>
+
+              <td class="text-start bg-light border-start border-secondary text-muted fst-italic">
+                <t t-esc="line.x_studio_comentario"/>
+              </td>
+            </tr>
+          </t>
+        </tbody>
+      </table>
+
+    </td>
+
+    <!-- ================= COLUMNA DERECHA | GRÁFICO ================= -->
+    <td style="width:50%; vertical-align: top; padding-left:10px;">
+
+      <div class="img-title text-center mb-2">
+        GRÁFICA DE DEFLEXIÓN
+      </div>
+
+      <div class="sh-bloque" style="text-align:center;">
+
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="380"
+             height="320"
+             viewBox="0 0 520 440"
+             preserveAspectRatio="xMidYMid meet"
+             style="background:#ffffff; border:1px solid #1f2a44;">
+
+          <!-- ESCALAS -->
+          <t t-set="ALTURA_MAX" t-value="50000.0"/>
+          <t t-set="TOL_MAX" t-value="150.0"/>
+
+          <!-- EJES -->
+          <line x1="40" y1="400" x2="460" y2="400"
+                stroke="#1f2a44" stroke-width="1"/>
+          <line x1="40" y1="40" x2="40" y2="400"
+                stroke="#1f2a44" stroke-width="1"/>
+
+          <!-- LABELS -->
+          <text x="430" y="418" font-size="10">Altura (mm)</text>
+          <text x="12" y="80" font-size="10"
+                transform="rotate(-90 12,80)">
+            Deflexión Permisible (mm)
+          </text>
+
+          <!-- LINEA -->
+          <t t-set="points" t-value="''"/>
+
+          <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+            <t t-set="altura" t-value="float(line.x_studio_tramo_torre_sgr or 0)"/>
+            <t t-set="tol" t-value="altura / 400"/>
+            <t t-set="x" t-value="40 + (altura / ALTURA_MAX) * 420"/>
+            <t t-set="y" t-value="400 - (tol / TOL_MAX) * 360"/>
+            <t t-set="points" t-value="points + str(x) + ',' + str(y) + ' '"/>
+          </t>
+
+          <polyline t-att-points="points"
+                    fill="none"
+                    stroke="#e63946"
+                    stroke-width="2"/>
+
+          <!-- PUNTOS -->
+          <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+            <t t-set="altura" t-value="float(line.x_studio_tramo_torre_sgr or 0)"/>
+            <t t-set="tol" t-value="altura / 400"/>
+            <t t-set="x" t-value="40 + (altura / ALTURA_MAX) * 420"/>
+            <t t-set="y" t-value="400 - (tol / TOL_MAX) * 360"/>
+
+            <circle t-att-cx="x" t-att-cy="y" r="4" fill="#1f2a44"/>
+            <text t-att-x="x + 6" t-att-y="y - 6" font-size="9">
+              <t t-esc="round(tol, 2)"/> mm
+            </text>
+          </t>
+
+        </svg>
+
+      </div>
+
+    </td>
+
+  </tr>
+</table>
+
+		
+</t>

@@ -1,0 +1,1793 @@
+<t t-name="x_project_task_worksheet_template_24">
+    
+    
+<!-- ======== ESTILOS INTEGRADOS PARA REPORTE PDF ======== -->
+<style>
+   /* === BASE GENERAL === */
+   body {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #000;
+      background-color: #fff;
+   } 
+
+   table {
+      width: 100%;
+      border-collapse: collapse;
+   }
+
+   th, td {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      vertical-align: middle;
+      text-align: left;
+      background-color: #fff;
+   }
+
+   /* ======== ENCABEZADO PRINCIPAL ======== */
+   .header-reporte {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 10px;
+      table-layout: fixed; /* fuerza proporciones consistentes */
+   }
+
+   /* Banda negra superior */
+   .header-reporte .titulo {
+      background-color: #000;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 6px;
+   }
+
+   /* Banda roja secundaria */
+   .header-reporte .subtitulo {
+      background-color: #d72626;
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px;
+   }
+
+   /* Etiquetas */
+   .header-reporte .label {
+      font-weight: bold;
+      font-size: 12px;
+      background-color: #f9f9f9;
+      text-align: left;
+      width: 20%;
+   }
+
+   /* Anchos de columnas */
+   .header-reporte td:nth-child(1),
+   .header-reporte td:nth-child(3) {
+      width: 22%;
+      background-color: #f9f9f9;
+      font-weight: bold;
+   }
+
+   .header-reporte td:nth-child(2),
+   .header-reporte td:nth-child(4) {
+      width: 28%;
+   }
+
+   /* Ajuste de texto largo */
+   .header-reporte td span {
+      word-wrap: break-word;
+      white-space: normal;
+      display: block;
+   }
+
+   /* Logos */
+   .header-reporte .logo {
+      max-height: 60px;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+   }
+
+   .logo {
+      width: 120px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+   }
+
+   /* ======== SECCIONES DE EVIDENCIA Y COMENTARIOS ======== */
+   .evidencia-title, .comentarios-title {
+      background-color: #d72626;
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 6px;
+      border: 1px solid #000;
+      margin: 14px 0 8px 0;
+      font-size: 13px;
+   }
+
+   /* Tarjeta de evidencia */
+   .evidencia-card {
+      background: #fff;
+      padding: 8px;
+      margin-bottom: 12px;
+      page-break-inside: avoid;
+      border: none;
+      box-shadow: none;
+   }
+
+   /* Título de imagen */
+   .img-title {
+      background-color: #d72626;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      padding: 4px 6px;
+      font-size: 12px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #000;
+      text-transform: uppercase;
+   }
+
+   /* Contenedor de imagen */
+   .custom-image {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      overflow: hidden;
+      border: none;
+      padding: 0;
+      background: none;
+      box-shadow: none;
+   }
+
+   .custom-image img {
+      width: 100%;
+      height: auto;
+      object-fit: none; /* muestra la imagen completa sin recortes */
+      image-orientation: from-image; /* respeta orientación original EXIF */
+      transform: none; /* sin rotaciones forzadas */
+      max-height: none;
+      image-rendering: auto;
+      display: block;
+      margin: 0 auto;
+   }
+
+   /* Contenedor GPS o imagen general */
+   .gps-container {
+      padding: 6px;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+   }
+
+   /* Texto de comentario */
+   .comentario-text {
+      border-top: 1px solid #000;
+      padding-top: 6px;
+      margin-top: 8px;
+      background: #fff;
+      white-space: pre-wrap;
+      line-height: 1.35;
+      font-size: 12px;
+   }
+
+   /* Etiquetas de información */
+   .info-label {
+      font-weight: bold;
+      display: inline-block;
+      min-width: 90px;
+   }
+
+   /* ======== UTILIDADES ======== */
+   .text-center { text-align: center; }
+   .text-right { text-align: right; }
+   .mb-3 { margin-bottom: 12px; }
+   .mt-4 { margin-top: 16px; }
+
+   /* ======== CONTROL DE PÁGINA ======== */
+   .pagina-sola {
+      page-break-before: always;
+      page-break-after: avoid;
+      margin-top: 15px;
+   }
+
+   /* ======== VERSIÓN PARA IMPRESIÓN ======== */
+   @media print {
+      body {
+         -webkit-print-color-adjust: exact;
+         print-color-adjust: exact;
+      }
+      .gps-container { min-height: 280px; }
+      .custom-image img { width: 100%; height: auto; max-height: none; }
+      .evidencia-card, .header-reporte, .pagina-sola {
+         page-break-inside: avoid;
+      }
+   }
+   /* ===== BLOQUE SPT – PTI ===== */
+
+.spt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.spt-title {
+    text-align: center;
+    padding: 6px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.spt-cell {
+    width: 50%;
+    padding: 6px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.spt-label {
+    font-weight: bold;
+    font-size: 11px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.spt-image {
+    max-width: 100%;
+    max-height: 220px;
+    border: 1px solid #ccc;
+}
+
+/* Opcional: mejora visual en PDF */
+.spt-table tr + tr td {
+    padding-top: 10px;
+}
+
+</style>
+  
+  
+  <!-- ======== IDENTIFICACIÓN DEL CANDIDATO ======== -->
+<table class="header-reporte">
+  <tr><th colspan="12" class="subtitulo">IDENTIFICACIÓN DEL SITIO</th></tr>
+</table>
+<!-- ======== INFORMACIÓN GENERAL ======== -->
+<table class="header-reporte">
+
+
+
+  <tr>
+    <td class="label">Nemónico:</td>
+    <td><span t-field="worksheet.x_studio_nemnico"/></td>
+    <td class="label">Región:</td>
+    <td><span t-field="worksheet.x_studio_regin"/></td>
+  </tr>
+
+  <tr>
+    <td class="label">Dirección del Sitio:</td>
+    <td><span t-field="worksheet.x_studio_direccin_del_sitio"/></td>
+    <td class="label">Comuna:</td>
+    <td><span t-field="worksheet.x_studio_comuna"/></td>
+  </tr>
+
+  <tr>
+    <td class="label">Zona:</td>
+    <td><span t-field="worksheet.x_studio_zona"/></td>
+    <td class="label">Tipo de Estructura:</td>
+    <td><span t-field="worksheet.x_studio_tipo_de_lugar"/></td>
+  </tr>
+
+  <tr>
+    <td class="label">Tipo de Torre:</td>
+    <td><span t-field="worksheet.x_studio_tipo_de_torre"/></td>
+    <td class="label">Altura de Torre (m):</td>
+    <td><span t-field="worksheet.x_studio_altura_torre"/></td>
+  </tr>
+ 
+  <tr>
+    <td class="label">Latitud:</td>
+    <td> 
+      <span t-field="worksheet.x_studio_latitud" t-options="{&quot;digits&quot;:[12,6]}"/>
+    </td> 
+    <td class="label">Longitud:</td>
+    <td>
+      <span t-field="worksheet.x_studio_longitud" t-options="{&quot;digits&quot;:[12,6]}"/>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Fecha:</td>
+    <td><span t-field="worksheet.x_studio_fecha"/></td>
+    <td class="label">Responsable:</td>
+    <td><span t-field="worksheet.x_studio_responsable_1"/></td>
+  </tr>
+
+</table>
+<!-- ======== CONDICIONES DE ACCESO ======== -->
+<table class="header-reporte">
+  <tr>
+    <th colspan="12" class="subtitulo">CONDICIONES DE ACCESO</th>
+  </tr>
+</table>
+
+<table class="header-reporte">
+
+  <tr>
+    <td class="label">Facilidad de Acceso:</td>
+    <td>
+      <span t-field="worksheet.x_studio_facilidad_de_acceso"/>
+    </td>
+
+    <td class="label">Tipo de Camino:</td>
+    <td>
+      <span t-field="worksheet.x_studio_tipo_de_camino"/>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Medio de Acceso:</td>
+    <td>
+      <span t-field="worksheet.x_studio_medio_de_acceso"/>
+    </td>
+
+    <td class="label">Tipo de Lugar:</td>
+    <td>
+      <span t-field="worksheet.x_studio_tipo_de_lugar_1"/>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Tipo de Candado:</td>
+    <td>
+      <span t-field="worksheet.x_studio_tipo_de_candado"/>
+    </td>
+
+    <td class="label">Clave / Código:</td>
+    <td>
+      <span t-field="worksheet.x_studio_clave"/>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Comentario Acceso al Sitio:</td>
+    <td colspan="3">
+      <span t-field="worksheet.x_studio_comentario_acceso_yo_sitio"/>
+    </td>
+  </tr>
+
+</table>
+
+<!-- ======== TORRE – VISTA GENERAL ======== -->
+<table class="header-reporte">
+  <tr>
+    <th colspan="12" class="subtitulo">TORRE – VISTA GENERAL</th>
+  </tr>
+</table>
+
+<table class="evidencias-container" style="width:100%; margin-top:14px;">
+  <tr>
+
+    <!-- IMAGEN TORRE COMPLETA -->
+    <td style="width:100%; padding:6px; text-align:center;">
+      <t t-if="worksheet['x_studio_foto_torre_completa']">
+
+
+        <div style="             height:520px;             display:flex;             align-items:center;             justify-content:center;           ">
+          <img t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_foto_torre_completa'].decode('utf-8')" style="               max-height:100%;               max-width:95%;               height:auto;               width:auto;               object-fit:contain;               border:none;               image-rendering:-webkit-optimize-contrast;               -webkit-print-color-adjust:exact;               print-color-adjust:exact;             "/>
+        </div>
+
+      </t>
+
+      <t t-else="">
+        <div style="color:#6c757d; font-style:italic; padding:20px;">
+          Sin registro fotográfico de la torre completa
+        </div>
+      </t>
+    </td>
+
+  </tr>
+</table>
+
+
+
+
+
+
+
+<!-- =================== TABLA + GRÁFICO (VERTICAL) =================== -->
+<table class="header-reporte mt-4" style="width:100%; table-layout:fixed;">
+  <tr>
+    <td style="width:100%; vertical-align: top;">
+        
+          <!-- ======== TÍTULOS ======== -->
+  <table class="header-reporte">
+    <tr>
+      <th colspan="12" class="subtitulo">REPORTE DE INVENTARIO</th>
+    </tr>
+  </table>
+
+      <!-- =================== TÍTULO GRILLA =================== -->
+      <table class="header-reporte mb-2" style="width:100%;">
+        <tr>
+          <th class="subtitulo text-center">
+            INVENTARIO DE EQUIPOS EN TORRE
+          </th>
+        </tr>
+      </table>
+
+      <!-- =================== GRILLA EQUIPOS =================== -->
+      <table class="header-reporte mt-2" style="width:100%; font-size:10px;">
+        <thead>
+          <tr>
+            <th class="text-center bg-secondary bg-opacity-15">Equipo</th>
+            <th class="text-center bg-secondary bg-opacity-15">Orientación</th>
+            <th class="text-center bg-secondary bg-opacity-15">Tramo</th>
+            <th class="text-center bg-secondary bg-opacity-15">Altura de equipos en Torre (m)</th>
+            <th class="text-center bg-secondary bg-opacity-15">Altura Equipo (m)</th>
+            <th class="text-center bg-secondary bg-opacity-15">Ancho Equipo (m)</th>
+            <th class="text-center bg-secondary bg-opacity-15">Profundidad Equipo (m)</th>
+            <th class="text-center bg-secondary bg-opacity-15">Área Ocupada (m²)</th>
+            <th class="text-center bg-secondary bg-opacity-15">Volumen Ocupado (m³)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <t t-foreach="worksheet.x_studio_one2many_field_3j6_1jfujrill" t-as="line">
+            <tr>
+              <td class="text-center bg-light border-start border-secondary">
+                <t t-esc="line.x_studio_tipo_de_antena_yo_equipo"/>
+              </td>
+              <td class="text-center bg-light border-start border-secondary">
+                <t t-esc="line.x_studio_orientacin"/>
+              </td>
+              <td class="text-center bg-light border-start border-secondary">
+                <t t-esc="line.x_studio_tramo"/>
+              </td>
+              <td class="text-center bg-light border-start border-secondary fw-semibold">
+                <t t-esc="line.x_studio_altura_tramo"/>
+              </td>
+              <td class="text-center bg-light border-start border-secondary">
+                <t t-esc="line.x_studio_altura_equipo_m"/>
+              </td>
+              <td class="text-center bg-light border-start border-secondary">
+                <t t-esc="line.x_studio_ancho_equipo_m"/>
+              </td>
+              <td class="text-center bg-light border-start border-secondary">
+                <t t-esc="line.x_studio_profundidad_equipo"/>
+              </td>
+              <td class="text-center bg-light border-start border-danger fw-semibold text-danger">
+                <t t-esc="line.x_studio_rea_ocupada_m"/>
+              </td>
+              <td class="text-center bg-light border-start border-secondary">
+                <t t-esc="line.x_studio_volumen_ocupado_m"/>
+              </td>
+            </tr>
+          </t>
+        </tbody>
+      </table>
+
+      <!-- =================== ESPACIADO =================== -->
+      <div style="height:20px;"/>
+
+      <!-- =================== TÍTULO GRÁFICO =================== -->
+      <table class="header-reporte mb-2" style="width:100%;">
+        <tr>
+          <th class="subtitulo text-center">
+            DISTRIBUCIÓN VERTICAL DE EQUIPOS EN TORRE
+          </th>
+        </tr>
+      </table>
+
+      <!-- =================== GRÁFICO + VOLUMETRÍA =================== -->
+      <table style="width:100%; table-layout:fixed;">
+        <tr>
+
+          <!-- GRÁFICO -->
+          <td style="width:65%; text-align:center; vertical-align:top;">
+            <div class="sh-bloque">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="260" height="420" viewBox="0 0 260 440" preserveAspectRatio="xMidYMid meet" style="background:#ffffff; border:1px solid #1f2a44;">
+
+                <t t-set="ALTURA_MAX" t-value="60.0"/>
+
+                <line x1="130" y1="40" x2="130" y2="400" stroke="#1f2a44" stroke-width="2"/>
+                <line x1="110" y1="400" x2="150" y2="400" stroke="#1f2a44" stroke-width="2"/>
+
+                <t t-foreach="[6,12,18,24,30,36,42,48,54]" t-as="sec">
+                  <t t-set="y" t-value="400 - (sec / ALTURA_MAX) * 360"/>
+                  <line x1="122" t-att-y1="y" x2="138" t-att-y2="y" stroke="#adb5bd" stroke-width="1"/>
+                  <text x="100" t-att-y="y + 3" font-size="8" fill="#6c757d" text-anchor="end">
+                    <t t-esc="str(sec)"/> m
+                  </text>
+                </t>
+
+                <t t-foreach="worksheet.x_studio_one2many_field_3j6_1jfujrill" t-as="line">
+                  <t t-set="altura" t-value="float(line.x_studio_altura_tramo or 0)"/>
+                  <t t-set="volumen" t-value="float(line.x_studio_volumen_ocupado_m or 0)"/>
+                  <t t-set="y" t-value="400 - (altura / ALTURA_MAX) * 360"/>
+
+                  <circle cx="130" t-att-cy="y" r="4" fill="#e63946"/>
+                  <line x1="130" t-att-y1="y" x2="150" t-att-y2="y" stroke="#495057" stroke-width="1"/>
+
+                  <text x="154" t-att-y="y + 4" font-size="9">
+                    <t t-esc="line.x_studio_tipo_de_antena_yo_equipo"/>
+                    <t> (</t><t t-esc="volumen"/><t> m³)</t>
+                  </text>
+                </t>
+              </svg>
+            </div>
+          </td>
+          
+          
+<td style="width:65%; text-align:center; vertical-align:top;">
+  <div class="sh-bloque">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="260" height="420" viewBox="0 0 260 440" preserveAspectRatio="xMidYMid meet" style="background:#ffffff; border:1px solid #1f2a44;">
+
+      <!-- Parámetros -->
+      <t t-set="ALTURA_MAX" t-value="60.0"/>
+      <t t-set="STACK_STEP" t-value="12"/>
+      <t t-set="last_altura" t-value="-1"/>
+      <t t-set="idx" t-value="0"/>
+
+      <!-- Eje -->
+      <line x1="130" y1="40" x2="130" y2="400" stroke="#1f2a44" stroke-width="2"/>
+      <line x1="110" y1="400" x2="150" y2="400" stroke="#1f2a44" stroke-width="2"/>
+
+      <!-- Marcas de altura -->
+      <t t-foreach="[6,12,18,24,30,36,42,48,54]" t-as="sec">
+        <t t-set="y_sec" t-value="400 - (sec / ALTURA_MAX) * 360"/>
+        <line x1="122" t-att-y1="y_sec" x2="138" t-att-y2="y_sec" stroke="#adb5bd" stroke-width="1"/>
+        <text x="100" t-att-y="y_sec + 3" font-size="8" fill="#6c757d" text-anchor="end">
+          <t t-esc="sec"/> m
+        </text>
+      </t>
+
+      <!-- Equipos (stack vertical por altura) -->
+      <t t-foreach="worksheet.x_studio_one2many_field_3j6_1jfujrill" t-as="line">
+
+        <!-- Datos -->
+        <t t-set="altura" t-value="float(line.x_studio_altura_tramo or 0)"/>
+        <t t-set="volumen" t-value="float(line.x_studio_volumen_ocupado_m or 0)"/>
+        <t t-set="y_base" t-value="400 - (altura / ALTURA_MAX) * 360"/>
+
+        <!-- Control de stack -->
+        <t t-if="altura == last_altura">
+          <t t-set="idx" t-value="idx + 1"/>
+        </t>
+        <t t-if="altura != last_altura">
+          <t t-set="idx" t-value="0"/>
+        </t>
+
+        <t t-set="last_altura" t-value="altura"/>
+
+        <!-- Posiciones -->
+        <t t-set="x_point" t-value="130"/>
+        <t t-set="y_point" t-value="y_base"/>
+        <t t-set="y_text" t-value="y_base + (idx * STACK_STEP)"/>
+
+        <!-- Punto en altura real -->
+        <circle t-att-cx="x_point" t-att-cy="y_point" r="4" fill="#e63946"/>
+
+        <!-- Línea guía -->
+        <line t-att-x1="x_point" t-att-y1="y_point" t-att-x2="150" t-att-y2="y_text" stroke="#495057" stroke-width="1"/>
+
+        <!-- Texto apilado -->
+        <text x="154" t-att-y="y_text + 4" font-size="9">
+          <t t-esc="line.x_studio_tipo_de_antena_yo_equipo"/>
+          <t> (</t><t t-esc="volumen"/><t> m³)</t>
+        </text>
+
+      </t>
+
+    </svg>
+
+  </div>
+</td>
+
+
+
+
+      <!-- VOLUMETRÍA -->
+                    <!-- VOLUMETRÍA -->
+                    <td style="width:35%; vertical-align:top; padding-left:12px;">
+                    
+                      <!-- Inicialización -->
+                      <t t-set="volumen_total" t-value="0.0"/>
+                      <t t-set="volumen_max_admisible" t-value="15.0"/>
+                    
+                      <!-- Sumatoria de volumen ocupado -->
+                      <t t-foreach="worksheet.x_studio_one2many_field_3j6_1jfujrill" t-as="line">
+                        <t t-set="volumen_total" t-value="volumen_total + float(line.x_studio_volumen_ocupado_m or 0)"/>
+                      </t>
+                    
+                      <!-- Cálculos -->
+                      <t t-set="capacidad_disponible" t-value="volumen_max_admisible - volumen_total"/>
+                    
+                      <t t-set="porcentaje_ocupacion" t-value="(volumen_total / volumen_max_admisible * 100.0) if volumen_max_admisible else 0"/>
+                    
+                      <!-- Para la barra -->
+                      <t t-set="porcentaje_barra" t-value="min(porcentaje_ocupacion, 100)"/>
+                    
+                      <t t-set="color_barra" t-value="                            '#198754' if porcentaje_ocupacion &lt; 80                            else '#ffc107' if porcentaje_ocupacion &lt;= 100                            else '#dc3545'                          "/>
+                    
+                      <!-- Tabla resumen -->
+                      <table style="width:100%; font-size:11px; border-collapse:collapse;">
+                    
+                        <tr>
+                          <th colspan="2" style="background:#f1f3f5; border:1px solid #adb5bd; padding:6px; text-align:left;">
+                            Resumen de Volumetría
+                          </th>
+                        </tr>
+                    
+                        <tr>
+                          <td style="border:1px solid #adb5bd; padding:6px;">
+                            Volumen máximo admisible
+                          </td>
+                          <td style="border:1px solid #adb5bd; padding:6px; text-align:right; font-weight:600;">
+                            <t t-esc="round(volumen_max_admisible, 2)"/> m³
+                          </td>
+                        </tr>
+                    
+                        <tr>
+                          <td style="border:1px solid #adb5bd; padding:6px;">
+                            Volumen ocupado actual
+                          </td>
+                          <td style="border:1px solid #adb5bd; padding:6px; text-align:right; font-weight:600;">
+                            <t t-esc="round(volumen_total, 2)"/> m³
+                          </td>
+                        </tr>
+                    
+                        <tr>
+                          <td style="border:1px solid #adb5bd; padding:6px;">
+                            Capacidad disponible
+                          </td>
+                    
+                          <td t-att-style="                                 'border:1px solid #adb5bd; padding:6px; text-align:right; font-weight:600; ' +                                 ('color:#198754;' if capacidad_disponible &gt;= 0 else 'color:#dc3545;')                               ">
+                            <t t-esc="round(capacidad_disponible, 2)"/> m³
+                          </td>
+                        </tr>
+                    
+                        <tr>
+                          <td style="border:1px solid #adb5bd; padding:6px;">
+                            Ocupación de torre
+                          </td>
+                          <td style="border:1px solid #adb5bd; padding:6px; text-align:right; font-weight:700;">
+                            <t t-esc="round(porcentaje_ocupacion, 1)"/> %
+                          </td>
+                        </tr>
+                    
+                        <!-- ===== BARRA DE OCUPACIÓN ===== -->
+                        <tr>
+                          <td colspan="2" style="border:1px solid #adb5bd; padding:8px;">
+                    
+                            <div style="font-size:10px; margin-bottom:4px;">
+                              Nivel de ocupación volumétrica
+                            </div>
+                    
+                            <!-- Contenedor -->
+                            <div style="width:100%; height:12px; background:#e9ecef; border-radius:6px; overflow:hidden;">
+                    
+                              <!-- Barra -->
+                              <div t-att-style="                                     'width:' + str(round(porcentaje_barra, 1)) + '%; ' +                                     'height:100%; background:' + color_barra + ';'                                   ">
+                              </div>
+                    
+                            </div>
+                    
+                          </td>
+                        </tr>
+                    
+                      </table>
+                    
+                    </td>
+
+
+
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+
+<!-- ========= BLOQUE COMPLETO REPORTE TIERRA (ANTI-CORTE PDF) ========= -->
+<div class="bloque-spt" style="page-break-inside:avoid; display:block;">
+
+  <!-- ======== TITULO REPORTE TIERRA ======== -->
+  <table class="header-reporte" style="width:100%; border-collapse:collapse; page-break-inside:avoid;">
+    <tr>
+      <th colspan="12" class="subtitulo">REPORTE DE TIERRA</th>
+    </tr>
+  </table>
+  
+  
+  <!-- ======== SECCIÓN: TABLA + GRÁFICA SPT ======== -->
+<table style="width:100%; border-collapse:collapse; margin-top:6px; page-break-inside:avoid;">
+  <tr>
+
+    <!-- ================== COLUMNA IZQUIERDA | TABLA ================== -->
+    <td style="width:50%; vertical-align:top; padding-right:10px;">
+           <div class="img-title text-center mb-2">
+        (Ω) TABLA MEDICIONES SPT
+      </div>
+
+    <!-- ======== TABLA MEDICIONES SPT ======== -->
+<table class="header-reporte"
+       style="width:100%; border-collapse:collapse; page-break-inside:avoid;">
+
+  <tr>
+    <th class="label" style="text-align:left;">Elemento SPT</th>
+    <th class="label" style="text-align:center;">Resistencia (Ω)</th>
+    <th class="label" style="text-align:center;">Cumple Norma</th>
+  </tr>
+
+  <!-- PATA TORRE -->
+  <tr>
+    <td class="label">Pata de la Torre</td>
+    <td style="text-align:center;">
+      <span t-field="worksheet.x_studio_pata_de_la_torre"/>
+    </td>
+    <td style="text-align:center;">
+      <t t-if="worksheet.x_studio_pata_de_la_torre &lt;= 5">
+        <span style="color:#2a9d8f; font-weight:bold;">CUMPLE</span>
+      </t>
+      <t t-else="">
+        <span style="color:#e63946; font-weight:bold;">NO CUMPLE</span>
+      </t>
+    </td>
+  </tr>
+
+  <!-- CERRAMIENTO -->
+  <tr>
+    <td class="label">Cerramiento</td>
+    <td style="text-align:center;">
+      <span t-field="worksheet.x_studio_cerramiento"/>
+    </td>
+    <td style="text-align:center;">
+      <t t-if="worksheet.x_studio_cerramiento &lt;= 5">
+        <span style="color:#2a9d8f; font-weight:bold;">CUMPLE</span>
+      </t>
+      <t t-else="">
+        <span style="color:#e63946; font-weight:bold;">NO CUMPLE</span>
+      </t>
+    </td>
+  </tr>
+
+  <!-- PORTÓN -->
+  <tr>
+    <td class="label">Portón</td>
+    <td style="text-align:center;">
+      <span t-field="worksheet.x_studio_portn"/>
+    </td>
+    <td style="text-align:center;">
+      <t t-if="worksheet.x_studio_portn &lt;= 5">
+        <span style="color:#2a9d8f; font-weight:bold;">CUMPLE</span>
+      </t>
+      <t t-else="">
+        <span style="color:#e63946; font-weight:bold;">NO CUMPLE</span>
+      </t>
+    </td>
+  </tr>
+
+  <!-- PARARRAYOS -->
+  <tr>
+    <td class="label">Pararrayos</td>
+    <td style="text-align:center;">
+      <span t-field="worksheet.x_studio_pararrayos"/>
+    </td>
+    <td style="text-align:center;">
+      <t t-if="worksheet.x_studio_pararrayos &lt;= 5">
+        <span style="color:#2a9d8f; font-weight:bold;">CUMPLE</span>
+      </t>
+      <t t-else="">
+        <span style="color:#e63946; font-weight:bold;">NO CUMPLE</span>
+      </t>
+    </td>
+  </tr>
+
+  <!-- BARRA SPT -->
+  <tr>
+    <td class="label">Barra SPT</td>
+    <td style="text-align:center;">
+      <span t-field="worksheet.x_studio_barra_spt"/>
+    </td>
+    <td style="text-align:center;">
+      <t t-if="worksheet.x_studio_barra_spt &lt;= 5">
+        <span style="color:#2a9d8f; font-weight:bold;">CUMPLE</span>
+      </t>
+      <t t-else="">
+        <span style="color:#e63946; font-weight:bold;">NO CUMPLE</span>
+      </t>
+    </td>
+  </tr>
+
+  <!-- ESCALERILLA -->
+  <tr>
+    <td class="label">Escalerilla</td>
+    <td style="text-align:center;">
+      <span t-field="worksheet.x_studio_escalerilla"/>
+    </td>
+    <td style="text-align:center;">
+      <t t-if="worksheet.x_studio_escalerilla &lt;= 5">
+        <span style="color:#2a9d8f; font-weight:bold;">CUMPLE</span>
+      </t>
+      <t t-else="">
+        <span style="color:#e63946; font-weight:bold;">NO CUMPLE</span>
+      </t>
+    </td>
+  </tr>
+
+
+
+  <!-- PROMEDIO SISTEMA -->
+  <tr>
+    <td class="label"><strong>Rg Promedio del Sistema</strong></td>
+    <td style="text-align:center;">
+      <strong><span t-field="worksheet.x_studio_rg_promedio"/></strong>
+    </td>
+    <td style="text-align:center;">
+      <t t-if="worksheet.x_studio_rg_promedio &lt;= 5">
+        <strong style="color:#2a9d8f;">CUMPLE</strong>
+      </t>
+      <t t-else="">
+        <strong style="color:#e63946;">NO CUMPLE</strong>
+      </t>
+    </td>
+  </tr>
+
+</table>
+
+
+    </td>
+
+    <!-- ================== COLUMNA DERECHA | GRÁFICA ================== -->
+    <td style="width:50%; vertical-align:top; padding-left:10px;">
+
+      <div class="img-title text-center mb-2">
+        GRÁFICA RESISTENCIA SISTEMA DE TIERRA (Ω) 
+      </div>
+
+      <div class="sh-bloque" style="text-align:center;">
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="380" height="360" viewBox="0 0 520 520" preserveAspectRatio="xMidYMid meet" style="background:#ffffff; border:1px solid #1f2a44;">
+
+          <!-- ESCALAS -->
+          <t t-set="RES_MAX" t-value="10.0"/>
+          <t t-set="LIMITE" t-value="5.0"/>
+
+          <!-- DATOS -->
+          <t t-set="valores" t-value="[             worksheet.x_studio_pata_de_la_torre or 0,             worksheet.x_studio_cerramiento or 0,             worksheet.x_studio_portn or 0,             worksheet.x_studio_pararrayos or 0,             worksheet.x_studio_barra_spt or 0,             worksheet.x_studio_escalerilla or 0           ]"/>
+
+          <!-- EJES -->
+          <line x1="60" y1="440" x2="480" y2="440" stroke="#1f2a44"/>
+          <line x1="60" y1="60" x2="60" y2="440" stroke="#1f2a44"/>
+
+          <!-- LABEL EJES -->
+          <text x="360" y="490" font-size="10">Elementos SPT</text>
+          <text x="18" y="220" font-size="10" transform="rotate(-90 18,220)">
+            Resistencia (Ω)
+          </text>
+
+          <!-- ESCALA Y -->
+          <t t-foreach="[0,2,4,6,8,10]" t-as="v">
+            <t t-set="y_val" t-value="440 - (v / RES_MAX) * 360"/>
+            <line x1="55" x2="480" t-att-y1="y_val" t-att-y2="y_val" stroke="#e0e0e0"/>
+            <text x="48" t-att-y="y_val + 4" font-size="9" text-anchor="end">
+              <t t-esc="v"/>
+            </text>
+          </t>
+
+          <!-- LINEA LIMITE -->
+          <t t-set="y_lim" t-value="440 - (LIMITE / RES_MAX) * 360"/>
+          <line x1="60" x2="480" t-att-y1="y_lim" t-att-y2="y_lim" stroke="#2a9d8f" stroke-dasharray="5,5"/>
+          <text x="480" t-att-y="y_lim - 4" font-size="12" fill="#2a9d8f" text-anchor="end">
+            Límite
+          </text>
+
+          <!-- POLILINEA -->
+          <t t-set="points" t-value="''"/>
+          <t t-foreach="range(0,6)" t-as="i">
+            <t t-set="res" t-value="float(valores[i])"/>
+            <t t-set="x" t-value="60 + (i * (420 / 5))"/>
+            <t t-set="y" t-value="440 - (res / RES_MAX) * 360"/>
+            <t t-set="points" t-value="points + str(x) + ',' + str(y) + ' '"/>
+          </t>
+
+          <polyline t-att-points="points" fill="none" stroke="#e63946" stroke-width="2"/>
+
+          <!-- PUNTOS -->
+          <t t-foreach="range(0,6)" t-as="i">
+            <t t-set="res" t-value="float(valores[i])"/>
+            <t t-set="x" t-value="60 + (i * (420 / 5))"/>
+            <t t-set="y" t-value="440 - (res / RES_MAX) * 360"/>
+
+            <circle t-att-cx="x" t-att-cy="y" r="4" t-att-fill="'#2a9d8f' if res &lt;= LIMITE else '#e63946'"/>
+
+            <text t-att-x="x + 6" t-att-y="y - 6" font-size="14">
+              <t t-esc="res"/> Ω
+            </text>
+          </t>
+
+          <!-- LABELS X -->
+          <text x="60" y="460" font-size="12" text-anchor="middle">Pata</text>
+          <text x="144" y="460" font-size="12" text-anchor="middle">Cierre</text>
+          <text x="228" y="460" font-size="12" text-anchor="middle">Portón</text>
+          <text x="312" y="460" font-size="12" text-anchor="middle">Pararr.</text>
+          <text x="396" y="460" font-size="12" text-anchor="middle">Barra</text>
+          <text x="480" y="460" font-size="12" text-anchor="middle">Escal.</text>
+
+        </svg>
+
+      </div>
+
+    </td>
+ 
+  </tr>
+</table>
+
+  <!-- ======== TITULO BARRA TIERRA ======== -->
+  <table class="header-reporte" style="width:100%; border-collapse:collapse; page-break-inside:avoid; margin-top: 2%;">
+    <tr>
+      <th colspan="12" class="subtitulo">Switch /Barra Tierra SPT</th>
+    </tr>
+  </table>
+<table class="evidencias-container" style="width:100%; margin-top:14px;">
+  
+  <tr>
+
+    <!-- IMAGEN TORRE COMPLETA -->
+    <td style="width:100%; padding:6px; text-align:center;">
+      <t t-if="worksheet['x_studio_switch_barra_de_tierra']">
+
+
+        <div style="             height:520px;             display:flex;             align-items:center;             justify-content:center;           ">
+          <img t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_switch_barra_de_tierra'].decode('utf-8')" style="               max-height:100%;               max-width:95%;               height:auto;               width:auto;               object-fit:contain;               border:none;               image-rendering:-webkit-optimize-contrast;               -webkit-print-color-adjust:exact;               print-color-adjust:exact;             "/>
+        </div>
+
+      </t>
+
+      <t t-else="">
+        <div style="color:#6c757d; font-style:italic; padding:20px;">
+          Sin registro fotográfico de la barra de tierra /Switch
+        </div>
+      </t>
+    </td>
+
+  </tr>
+</table>
+
+
+
+ 
+</div>
+
+
+  
+  
+  
+  
+  
+<!-- ===================== SECCIÓN: EVIDENCIA SISTEMA DE TIERRA SPT ===================== -->
+<div class="pagina-sola" style="page-break-before: always; margin-top:20px;">
+
+<t t-set="imagenes_spt" t-value="[     ('x_studio_medicin_n1_pata_de_la_torre', 'Pata de la Torre'),     ('x_studio_medicin_n2_cerramiento', 'Cerramiento'),     ('x_studio_medicin_n3_portn', 'Portón'),     ('x_studio_medicin_n4_pararrayos', 'Pararrayos'),     ('x_studio_medicin_n5_barra_de_spt', 'Barra de SPT'),     ('x_studio_medicin_n6_escalerilla', 'Escalerilla') ]"/>
+
+<t t-set="total_spt" t-value="len(imagenes_spt)"/>
+
+<!-- ===================== RECORRER EN BLOQUES DE 6 ===================== -->
+<t t-foreach="range(0, total_spt, 6)" t-as="start_spt">
+
+    <!-- ===================== HOJA ===================== -->
+    <div style="page-break-before: always;">
+
+        <!-- TÍTULO EN CADA HOJA -->
+        <div class="evidencia-title" style="margin-bottom:10px;">
+            Evidencia Sistema de Tierra SPT
+        </div>
+
+        <table class="evidencias-container" style="width:100%; border-collapse:collapse;">
+
+            <!-- RECORRIDO 2 EN 2 PARA ARMAR PARES -->
+            <t t-foreach="range(start_spt, min(start_spt+6, total_spt), 2)" t-as="i">
+
+                <tr>
+
+                    <!-- =============== COLUMNA IZQUIERDA =============== -->
+                    <td style="width:50%; vertical-align:top; padding:6px;">
+                        <t t-if="worksheet[imagenes_spt[i][0]]">
+                            <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom:10px;">
+                                <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+                                    <t t-esc="imagenes_spt[i][1]"/>
+                                </div>
+                                <div class="custom-image" style="text-align:center;">
+                                    <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_spt[i][0]].decode('utf-8')" style="width:100%; height:auto; max-height:330px; object-fit:contain; border:none;                                                 image-rendering:-webkit-optimize-contrast;                                                 -webkit-print-color-adjust:exact;"/>
+                                </div>
+                            </div>
+                        </t>
+                    </td>
+
+                    <!-- =============== COLUMNA DERECHA =============== -->
+                    <td style="width:50%; vertical-align:top; padding:6px;">
+                        <t t-if="i+1 &lt; total_spt and worksheet[imagenes_spt[i+1][0]]">
+                            <div class="evidencia-card" style="page-break-inside: avoid; margin-bottom:10px;">
+                                <div class="img-title" style="text-align:center; font-size:11px; margin-bottom:4px;">
+                                    <t t-esc="imagenes_spt[i+1][1]"/>
+                                </div>
+                                <div class="custom-image" style="text-align:center;">
+                                    <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_spt[i+1][0]].decode('utf-8')" style="width:100%; height:auto; max-height:330px; object-fit:contain; border:none;                                                 image-rendering:-webkit-optimize-contrast;                                                 -webkit-print-color-adjust:exact;"/>
+                                </div>
+                            </div>
+                        </t>
+                    </td>
+
+                </tr>
+
+            </t>
+
+        </table>
+
+    </div>
+
+</t>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ===================== SECCIÓN: REPORTE DE VERTICALIDAD ===================== -->
+<div class="pagina-sola" style="page-break-before: always; margin-top: 20px;">
+
+  <!-- ======== TÍTULOS ======== -->
+  <table class="header-reporte">
+    <tr>
+      <th colspan="12" class="subtitulo">REPORTE DE VERTICALIDAD</th>
+    </tr>
+  </table>
+
+  <table class="header-reporte">
+    <tr>
+      <th colspan="12" class="subtitulo">DETALLE DEL EQUIPO DE MEDICIÓN</th>
+    </tr>
+  </table>
+
+  <!-- ======== DATOS DEL EQUIPO ======== -->
+  <table class="header-reporte">
+    <tr>
+      <td class="label">Equipo Utilizado:</td>
+      <td><span t-field="worksheet.x_studio_equipo_utilizado"/></td>
+      <td class="label">Marca:</td>
+      <td><span t-field="worksheet.x_studio_marca"/></td>
+    </tr>
+    <tr>
+      <td class="label">Modelo del Equipo:</td>
+      <td><span t-field="worksheet.x_studio_modelo_equipo"/></td>
+      <td class="label">N° de Serie:</td>
+      <td><span t-field="worksheet.x_studio_n_serie"/></td>
+    </tr>
+  </table>
+  <!-- =================== TABLA + GRÁFICO =================== -->
+  <table class="header-reporte mt-4" style="width:100%; table-layout:fixed;">
+    <tr>
+
+      <!-- ===== COLUMNA IZQUIERDA | TABLA ===== -->
+      <td style="width:50%; vertical-align: top; padding-right:10px;">
+
+        <table class="header-reporte mb-2" style="width:100%;">
+          <tr>
+            <th class="subtitulo text-center">
+              INSPECCIÓN DE DEFLEXIÓN – SECTOR A
+            </th>
+          </tr>
+        </table>
+
+        <table class="header-reporte mt-2" style="width:100%;">
+          <thead>
+            <tr>
+              <th class="text-center bg-secondary bg-opacity-15">Tramo Torre (mm)</th>
+              <th class="text-center bg-secondary bg-opacity-15">
+                Deflexión Permisible (H / 400)
+              </th>
+              <th class="text-center bg-secondary bg-opacity-15">Deflexión Medida</th>
+              <th class="text-center bg-secondary bg-opacity-15">Aplica</th>
+              <th class="text-start bg-secondary bg-opacity-15">Obs.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+              <tr>
+                <td class="text-center bg-light border-start border-secondary">
+                  <t t-esc="line.x_studio_tramo_torre_sgr"/>
+                </td>
+                <td class="text-center bg-light border-start border-secondary">
+                  <t t-esc="round((float(line.x_studio_tramo_torre_sgr or 0)) / 400, 2)"/>
+                </td>
+                <td class="text-center bg-light border-start border-secondary">
+                  <t t-esc="line.x_studio_deflexin_medida_sgr"/>
+                </td>
+                <td class="text-center bg-light border-start border-secondary fw-semibold">
+                  <t t-if="line.x_studio_cumple">
+                    <span class="text-success">✔ Cumple</span>
+                  </t>
+                  <t t-else="">
+                    <span class="text-danger">✖ No cumple</span>
+                  </t>
+                </td>
+                <td class="text-start bg-light border-start border-secondary text-muted fst-italic">
+                  <t t-esc="line.x_studio_comentario"/>
+                </td>
+              </tr>
+            </t>
+          </tbody>
+        </table>
+
+      </td>
+
+      <!-- ===== COLUMNA DERECHA | GRÁFICO ===== -->
+      <td style="width:50%; vertical-align: top; padding-left:10px;">
+        <div class="img-title text-center mb-2">
+          GRÁFICA DE DEFLEXIÓN
+        </div>
+
+        <div class="sh-bloque" style="text-align:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="380" height="320" viewBox="0 0 520 440" preserveAspectRatio="xMidYMid meet" style="background:#ffffff; border:1px solid #1f2a44;">
+
+            <t t-set="ALTURA_MAX" t-value="50000.0"/>
+            <t t-set="TOL_MAX" t-value="150.0"/>
+
+            <line x1="40" y1="400" x2="460" y2="400" stroke="#1f2a44"/>
+            <line x1="40" y1="40" x2="40" y2="400" stroke="#1f2a44"/>
+
+            <t t-set="points" t-value="''"/>
+            <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+              <t t-set="altura" t-value="float(line.x_studio_tramo_torre_sgr or 0)"/>
+              <t t-set="tol" t-value="altura / 400"/>
+              <t t-set="x" t-value="40 + (altura / ALTURA_MAX) * 420"/>
+              <t t-set="y" t-value="400 - (tol / TOL_MAX) * 360"/>
+              <t t-set="points" t-value="points + str(x) + ',' + str(y) + ' '"/>
+            </t>
+
+            <polyline t-att-points="points" fill="none" stroke="#e63946" stroke-width="2"/>
+
+            <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+              <t t-set="altura" t-value="float(line.x_studio_tramo_torre_sgr or 0)"/>
+              <t t-set="tol" t-value="altura / 400"/>
+              <t t-set="x" t-value="40 + (altura / ALTURA_MAX) * 420"/>
+              <t t-set="y" t-value="400 - (tol / TOL_MAX) * 360"/>
+              <circle t-att-cx="x" t-att-cy="y" r="4" fill="#1f2a44"/>
+              <text t-att-x="x + 6" t-att-y="y - 6" font-size="9">
+                <t t-esc="round(tol, 2)"/> mm
+              </text>
+            </t>
+
+          </svg>
+        </div>
+      </td>
+
+    </tr>
+  </table>
+
+  <!-- =================== TABLA + GRÁFICO =================== -->
+  <table class="header-reporte mt-4" style="width:100%; table-layout:fixed;">
+    <tr>
+
+      <!-- ===== COLUMNA IZQUIERDA | TABLA ===== -->
+      <td style="width:50%; vertical-align: top; padding-right:10px;">
+
+        <table class="header-reporte mb-2" style="width:100%;">
+          <tr>
+            <th class="subtitulo text-center">
+              INSPECCIÓN DE DEFLEXIÓN – SECTOR B
+            </th>
+          </tr>
+        </table>
+
+        <table class="header-reporte mt-2" style="width:100%;">
+          <thead>
+            <tr>
+              <th class="text-center bg-secondary bg-opacity-15">Tramo Torre (mm)</th>
+              <th class="text-center bg-secondary bg-opacity-15">
+                Deflexión Permisible (H / 400)
+              </th>
+              <th class="text-center bg-secondary bg-opacity-15">Deflexión Medida</th>
+              <th class="text-center bg-secondary bg-opacity-15">Aplica</th>
+              <th class="text-start bg-secondary bg-opacity-15">Obs.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+              <tr>
+                <td class="text-center bg-light border-start border-secondary">
+                  <t t-esc="line.x_studio_tramo_torre_sgr"/>
+                </td>
+                <td class="text-center bg-light border-start border-secondary">
+                  <t t-esc="round((float(line.x_studio_tramo_torre_sgr or 0)) / 400, 2)"/>
+                </td>
+                <td class="text-center bg-light border-start border-secondary">
+                  <t t-esc="line.x_studio_deflexin_medida_sgr"/>
+                </td>
+                <td class="text-center bg-light border-start border-secondary fw-semibold">
+                  <t t-if="line.x_studio_cumple">
+                    <span class="text-success">✔ Cumple</span>
+                  </t>
+                  <t t-else="">
+                    <span class="text-danger">✖ No cumple</span>
+                  </t>
+                </td>
+                <td class="text-start bg-light border-start border-secondary text-muted fst-italic">
+                  <t t-esc="line.x_studio_comentario"/>
+                </td>
+              </tr>
+            </t>
+          </tbody>
+        </table>
+
+      </td>
+
+      <!-- ===== COLUMNA DERECHA | GRÁFICO ===== -->
+      <td style="width:50%; vertical-align: top; padding-left:10px;">
+        <div class="img-title text-center mb-2">
+          GRÁFICA DE DEFLEXIÓN
+        </div>
+
+        <div class="sh-bloque" style="text-align:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="380" height="320" viewBox="0 0 520 440" preserveAspectRatio="xMidYMid meet" style="background:#ffffff; border:1px solid #1f2a44;">
+
+            <t t-set="ALTURA_MAX" t-value="50000.0"/>
+            <t t-set="TOL_MAX" t-value="150.0"/>
+
+            <line x1="40" y1="400" x2="460" y2="400" stroke="#1f2a44"/>
+            <line x1="40" y1="40" x2="40" y2="400" stroke="#1f2a44"/>
+
+            <t t-set="points" t-value="''"/>
+            <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+              <t t-set="altura" t-value="float(line.x_studio_tramo_torre_sgr or 0)"/>
+              <t t-set="tol" t-value="altura / 400"/>
+              <t t-set="x" t-value="40 + (altura / ALTURA_MAX) * 420"/>
+              <t t-set="y" t-value="400 - (tol / TOL_MAX) * 360"/>
+              <t t-set="points" t-value="points + str(x) + ',' + str(y) + ' '"/>
+            </t>
+
+            <polyline t-att-points="points" fill="none" stroke="#e63946" stroke-width="2"/>
+
+            <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+              <t t-set="altura" t-value="float(line.x_studio_tramo_torre_sgr or 0)"/>
+              <t t-set="tol" t-value="altura / 400"/>
+              <t t-set="x" t-value="40 + (altura / ALTURA_MAX) * 420"/>
+              <t t-set="y" t-value="400 - (tol / TOL_MAX) * 360"/>
+              <circle t-att-cx="x" t-att-cy="y" r="4" fill="#1f2a44"/>
+              <text t-att-x="x + 6" t-att-y="y - 6" font-size="9">
+                <t t-esc="round(tol, 2)"/> mm
+              </text>
+            </t>
+
+          </svg>
+        </div>
+      </td>
+
+    </tr>
+  </table>
+    <!-- =================== TABLA + GRÁFICO =================== -->
+  <table class="header-reporte mt-4" style="width:100%; table-layout:fixed;">
+    <tr>
+
+      <!-- ===== COLUMNA IZQUIERDA | TABLA ===== -->
+      <td style="width:50%; vertical-align: top; padding-right:10px;">
+
+        <table class="header-reporte mb-2" style="width:100%;">
+          <tr>
+            <th class="subtitulo text-center">
+              INSPECCIÓN DE DEFLEXIÓN – SECTOR C
+            </th>
+          </tr>
+        </table>
+
+        <table class="header-reporte mt-2" style="width:100%;">
+          <thead>
+            <tr>
+              <th class="text-center bg-secondary bg-opacity-15">Tramo Torre (mm)</th>
+              <th class="text-center bg-secondary bg-opacity-15">
+                Deflexión Permisible (H / 400)
+              </th>
+              <th class="text-center bg-secondary bg-opacity-15">Deflexión Medida</th>
+              <th class="text-center bg-secondary bg-opacity-15">Aplica</th>
+              <th class="text-start bg-secondary bg-opacity-15">Obs.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+              <tr>
+                <td class="text-center bg-light border-start border-secondary">
+                  <t t-esc="line.x_studio_tramo_torre_sgr"/>
+                </td>
+                <td class="text-center bg-light border-start border-secondary">
+                  <t t-esc="round((float(line.x_studio_tramo_torre_sgr or 0)) / 400, 2)"/>
+                </td>
+                <td class="text-center bg-light border-start border-secondary">
+                  <t t-esc="line.x_studio_deflexin_medida_sgr"/>
+                </td>
+                <td class="text-center bg-light border-start border-secondary fw-semibold">
+                  <t t-if="line.x_studio_cumple">
+                    <span class="text-success">✔ Cumple</span>
+                  </t>
+                  <t t-else="">
+                    <span class="text-danger">✖ No cumple</span>
+                  </t>
+                </td>
+                <td class="text-start bg-light border-start border-secondary text-muted fst-italic">
+                  <t t-esc="line.x_studio_comentario"/>
+                </td>
+              </tr>
+            </t>
+          </tbody>
+        </table>
+
+      </td>
+
+      <!-- ===== COLUMNA DERECHA | GRÁFICO ===== -->
+      <td style="width:50%; vertical-align: top; padding-left:10px;">
+        <div class="img-title text-center mb-2">
+          GRÁFICA DE DEFLEXIÓN
+        </div> 
+
+        <div class="sh-bloque" style="text-align:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="380" height="320" viewBox="0 0 520 440" preserveAspectRatio="xMidYMid meet" style="background:#ffffff; border:1px solid #1f2a44;">
+
+            <t t-set="ALTURA_MAX" t-value="50000.0"/> 
+            <t t-set="TOL_MAX" t-value="150.0"/>
+
+            <line x1="40" y1="400" x2="460" y2="400" stroke="#1f2a44"/>
+            <line x1="40" y1="40" x2="40" y2="400" stroke="#1f2a44"/>
+
+            <t t-set="points" t-value="''"/>
+            <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+              <t t-set="altura" t-value="float(line.x_studio_tramo_torre_sgr or 0)"/>
+              <t t-set="tol" t-value="altura / 400"/>
+              <t t-set="x" t-value="40 + (altura / ALTURA_MAX) * 420"/>
+              <t t-set="y" t-value="400 - (tol / TOL_MAX) * 360"/>
+              <t t-set="points" t-value="points + str(x) + ',' + str(y) + ' '"/>
+            </t>
+
+            <polyline t-att-points="points" fill="none" stroke="#e63946" stroke-width="2"/>
+
+            <t t-foreach="worksheet.x_studio_one2many_field_qb_1jfc4v5b3" t-as="line">
+              <t t-set="altura" t-value="float(line.x_studio_tramo_torre_sgr or 0)"/>
+              <t t-set="tol" t-value="altura / 400"/>
+              <t t-set="x" t-value="40 + (altura / ALTURA_MAX) * 420"/>
+              <t t-set="y" t-value="400 - (tol / TOL_MAX) * 360"/>
+              <circle t-att-cx="x" t-att-cy="y" r="4" fill="#1f2a44"/>
+              <text t-att-x="x + 6" t-att-y="y - 6" font-size="9">
+                <t t-esc="round(tol, 2)"/> mm
+              </text>
+            </t>
+
+          </svg>
+        </div>
+      </td>
+
+    </tr>
+  </table>
+  <!-- =================== IMÁGENES EQUIPO DE MEDICIÓN (VERTICAL) =================== -->
+<table class="evidencias-container" style="width:100%; margin-top:20px;">
+  <tr>
+
+    <!-- IMAGEN 1 -->
+    <td style="width:50%; padding:6px; text-align:center;">
+      <t t-if="worksheet['x_studio_evidencia_n1']">
+        <div class="img-title text-center">
+          Equipo de Medición – Evidencia 1
+        </div>
+
+        <div style="              height:420px;              display:flex;              align-items:center;              justify-content:center;         ">
+          <img t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_evidencia_n1'].decode('utf-8')" style="                  max-height:100%;                  max-width:70%;                  height:auto;                  width:auto;                  object-fit:contain;                  border:none;                  image-rendering:-webkit-optimize-contrast;                  -webkit-print-color-adjust:exact;                  print-color-adjust:exact;                "/>
+        </div>
+      </t>
+    </td>
+ 
+    <!-- IMAGEN 2 -->
+    <td style="width:50%; padding:6px; text-align:center;">
+      <t t-if="worksheet['x_studio_evidencia_n2']">
+        <div class="img-title text-center">
+          Equipo de Medición – Evidencia 2
+        </div>
+
+        <div style="              height:420px;              display:flex;              align-items:center;              justify-content:center;         ">
+          <img t-att-src="'data:image/png;base64,%s' % worksheet['x_studio_evidencia_n2'].decode('utf-8')" style="                  max-height:100%;                  max-width:70%;                  height:auto;                  width:auto;                  object-fit:contain;                  border:none;                  image-rendering:-webkit-optimize-contrast;                  -webkit-print-color-adjust:exact;                  print-color-adjust:exact;                "/>
+        </div>
+      </t>
+    </td>
+
+  </tr>
+</table>
+
+
+
+</div>
+
+<!-- =========================================================
+     HOJA ÚNICA | HERRAJE + PRENSACABLES + TRAMOS + GRÁFICO + EVIDENCIAS
+========================================================= -->
+
+<div class="pagina-sola"
+     style="page-break-inside:avoid; margin-top:20px;">
+
+  <!-- ================== TÍTULO PRINCIPAL ================== -->
+  <div class="evidencia-title"
+       style="margin-bottom:15px; text-align:center; font-size:16px;">
+    Reporte de Sistema de Ascenso (SCDR)
+  </div>
+
+  <!-- =====================================================
+       GRÁFICO ESTADO SISTEMA DE ASCENSO
+  ===================================================== -->
+
+  <div style="margin-bottom:20px; page-break-inside:avoid;">
+
+    <!-- ================== TÍTULO PRINCIPAL ================== -->
+  <div class="evidencia-title"
+       style="margin-bottom:15px; text-align:center; font-size:16px;">
+    Estado General del sistema de Ascenso (SCDR)
+  </div>
+
+    <svg width="100%" height="190" viewBox="0 0 520 190">
+
+      <!-- HERRAJE INFERIOR -->
+      <text x="10" y="30" font-size="11">Herraje Inferior</text>
+      <rect x="160" y="18" width="330" height="14" fill="#e0e0e0"/>
+      <t t-if="worksheet.x_studio_estado_herraje_inferior == 'Bueno'">
+        <rect x="160" y="18" width="330" height="14" fill="#2e7d32"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado_herraje_inferior == 'Regular'">
+        <rect x="160" y="18" width="215" height="14" fill="#f9a825"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado_herraje_inferior == 'Malo'">
+        <rect x="160" y="18" width="115" height="14" fill="#c62828"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado_herraje_inferior == 'N/A'">
+        <rect x="160" y="18" width="50" height="14" fill="#9e9e9e"/>
+      </t>
+
+      <!-- HERRAJE SUPERIOR -->
+      <text x="10" y="65" font-size="11">Herraje Superior</text>
+      <rect x="160" y="53" width="330" height="14" fill="#e0e0e0"/>
+      <t t-if="worksheet.x_studio_estado_herraje_superior == 'Bueno'">
+        <rect x="160" y="53" width="330" height="14" fill="#2e7d32"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado_herraje_superior == 'Regular'">
+        <rect x="160" y="53" width="215" height="14" fill="#f9a825"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado_herraje_superior == 'Malo'">
+        <rect x="160" y="53" width="115" height="14" fill="#c62828"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado_herraje_superior == 'N/A'">
+        <rect x="160" y="53" width="50" height="14" fill="#9e9e9e"/>
+      </t>
+
+      <!-- PRENSACABLES -->
+      <text x="10" y="100" font-size="11">Prensacables</text>
+      <rect x="160" y="88" width="330" height="14" fill="#e0e0e0"/>
+      <t t-if="worksheet.x_studio_estado == 'Bueno'">
+        <rect x="160" y="88" width="330" height="14" fill="#2e7d32"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado == 'Regular'">
+        <rect x="160" y="88" width="215" height="14" fill="#f9a825"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado == 'Malo'">
+        <rect x="160" y="88" width="115" height="14" fill="#c62828"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado == 'N/A'">
+        <rect x="160" y="88" width="50" height="14" fill="#9e9e9e"/>
+      </t>
+
+      <!-- ESCALERA -->
+      <text x="10" y="135" font-size="11">Escalera</text>
+      <rect x="160" y="123" width="330" height="14" fill="#e0e0e0"/>
+      <t t-if="worksheet.x_studio_estado_escalera == 'Bueno'">
+        <rect x="160" y="123" width="330" height="14" fill="#2e7d32"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado_escalera == 'Regular'">
+        <rect x="160" y="123" width="215" height="14" fill="#f9a825"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado_escalera == 'Malo'">
+        <rect x="160" y="123" width="115" height="14" fill="#c62828"/>
+      </t>
+      <t t-if="worksheet.x_studio_estado_escalera == 'N/A'">
+        <rect x="160" y="123" width="50" height="14" fill="#9e9e9e"/>
+      </t>
+
+      <!-- LEYENDA -->
+      <rect x="160" y="155" width="14" height="14" fill="#2e7d32"/>
+      <text x="180" y="166" font-size="10">Bueno</text>
+
+      <rect x="240" y="155" width="14" height="14" fill="#f9a825"/>
+      <text x="260" y="166" font-size="10">Regular</text>
+
+      <rect x="330" y="155" width="14" height="14" fill="#c62828"/>
+      <text x="350" y="166" font-size="10">Malo</text>
+
+      <rect x="410" y="155" width="14" height="14" fill="#9e9e9e"/>
+      <text x="430" y="166" font-size="10">N/A</text>
+
+    </svg>
+  </div>
+
+  <!-- =====================================================
+       TABLAS SISTEMA DE ASCENSO SGR
+  ===================================================== -->
+
+
+
+  <!-- ================== CONTROL HERRAJE ================== -->
+  <t t-set="mostrar_grilla_herraje"
+     t-value="
+       worksheet.x_studio_estado_herraje_inferior or
+       worksheet.x_studio_estado_herraje_superior or
+       worksheet.x_studio_estado_del_cable or
+       worksheet.x_studio_dimetro_del_cable or
+       worksheet.x_studio_comentario
+     "/>
+
+  <!-- ================== GRILLA HERRAJE ================== -->
+  <t t-if="mostrar_grilla_herraje">
+
+    <div class="evidencia-title" style="margin-bottom:10px;">
+      Herraje
+    </div>
+
+    <table class="header-reporte"
+           style="width:100%; border-collapse:collapse; page-break-inside:avoid;">
+
+      <tr>
+        <th class="label" style="text-align:left;">Ítem</th>
+        <th class="label" style="text-align:center;">Estado</th>
+      </tr>
+
+      <tr>
+        <td class="label">Herraje Inferior</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_estado_herraje_inferior"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Herraje Superior</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_estado_herraje_superior"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Estado del Cable</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_estado_del_cable"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Diámetro del Cable</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_dimetro_del_cable"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" style="border-top:1px solid #1f2a44;"/>
+      </tr>
+
+      <tr>
+        <td class="label"><strong>Comentario Técnico</strong></td>
+        <td style="text-align:left;">
+          <span t-field="worksheet.x_studio_comentario"/>
+        </td>
+      </tr>
+
+    </table>
+  </t>
+
+  <!-- ================== CONTROL PRENSACABLES ================== -->
+  <t t-set="mostrar_grilla_prensacables"
+     t-value="
+       worksheet.x_studio_cantidad or
+       worksheet.x_studio_distanciamiento or
+       worksheet.x_studio_estado or
+       worksheet.x_studio_certificacin or
+       worksheet.x_studio_comentario_1
+     "/>
+
+  <!-- ================== GRILLA PRENSACABLES ================== -->
+  <t t-if="mostrar_grilla_prensacables">
+
+    <div class="evidencia-title" style="margin:20px 0 10px 0;">
+      Prensacables
+    </div>
+
+    <table class="header-reporte"
+           style="width:100%; border-collapse:collapse; page-break-inside:avoid;">
+
+      <tr>
+        <th class="label" style="text-align:left;">Ítem</th>
+        <th class="label" style="text-align:center;">Detalle</th>
+      </tr>
+
+      <tr>
+        <td class="label">Cantidad</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_cantidad"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Distanciamiento</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_distanciamiento"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Estado Prensacables</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_estado"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Certificación</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_certificacin"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" style="border-top:1px solid #1f2a44;"/>
+      </tr>
+
+      <tr>
+        <td class="label"><strong>Comentario Técnico</strong></td>
+        <td style="text-align:left;">
+          <span t-field="worksheet.x_studio_comentario_1"/>
+        </td>
+      </tr>
+
+    </table>
+  </t>
+
+  <!-- ================== CONTROL TRAMOS ================== -->
+  <t t-set="mostrar_grilla_tramos"
+     t-value="
+       worksheet.x_studio_n_tramos or
+       worksheet.x_studio_n_uniones or
+       worksheet.x_studio_dimetro_tornillo or
+       worksheet.x_studio_estado_escalera
+     "/>
+
+  <!-- ================== GRILLA TRAMOS (ESCALERAS) ================== -->
+  <t t-if="mostrar_grilla_tramos">
+
+    <div class="evidencia-title" style="margin:20px 0 10px 0;">
+      Tramos (Escaleras)
+    </div>
+
+    <table class="header-reporte"
+           style="width:100%; border-collapse:collapse; page-break-inside:avoid;">
+
+      <tr>
+        <th class="label" style="text-align:left;">Ítem</th>
+        <th class="label" style="text-align:center;">Detalle</th>
+      </tr>
+
+      <tr>
+        <td class="label">N° de Tramos</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_n_tramos"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">N° de Uniones</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_n_uniones"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Diámetro del Tornillo</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_dimetro_tornillo"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Estado de la Escalera</td>
+        <td style="text-align:center;">
+          <span t-field="worksheet.x_studio_estado_escalera"/>
+        </td>
+      </tr>
+
+    </table>
+  </t>
+
+  <!-- ================== IMÁGENES ASCENSO ================== -->
+  <t t-set="imagenes_ascenso" t-value="[
+      ('x_studio_herraje_inferior', 'Herraje Inferior'),
+      ('x_studio_herraje_superior', 'Herraje Superior'),
+      ('x_studio_prensacables_inferior', 'Prensacables Inferior'),
+      ('x_studio_tipo_de_carro', 'Tipo de Carro'),
+      ('x_studio_observacin_unin_tramos', 'Observación Unión de Tramos'),
+      ('x_studio_observacin_mordaza', 'Observación Mordaza')
+  ]"/>
+
+  <t t-set="hay_imagen_ascenso"
+     t-value="any(worksheet[campo] for campo, titulo in imagenes_ascenso)"/>
+
+  <t t-if="hay_imagen_ascenso">
+
+    <div class="evidencia-title" style="margin:20px 0 10px 0;">
+      Evidencia Sistema de Ascenso
+    </div>
+
+    <table class="evidencias-container"
+           style="width:100%; border-collapse:collapse; page-break-inside:avoid;">
+
+      <t t-set="total" t-value="len(imagenes_ascenso)"/>
+
+      <t t-foreach="range(0, total, 2)" t-as="i">
+        <tr>
+
+          <td style="width:50%; padding:6px; vertical-align:top;">
+            <t t-if="worksheet[imagenes_ascenso[i][0]]">
+              <div class="evidencia-card">
+                <div class="img-title" style="text-align:center; font-size:11px;">
+                  <t t-esc="imagenes_ascenso[i][1]"/>
+                </div>
+                <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_ascenso[i][0]].decode('utf-8')"
+                     style="width:100%; max-height:320px; object-fit:contain;"/>
+              </div>
+            </t>
+          </td>
+
+          <td style="width:50%; padding:6px; vertical-align:top;">
+            <t t-if="i+1 &lt; total and worksheet[imagenes_ascenso[i+1][0]]">
+              <div class="evidencia-card">
+                <div class="img-title" style="text-align:center; font-size:11px;">
+                  <t t-esc="imagenes_ascenso[i+1][1]"/>
+                </div>
+                <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_ascenso[i+1][0]].decode('utf-8')"
+                     style="width:100%; max-height:320px; object-fit:contain;"/>
+              </div>
+            </t>
+          </td>
+
+        </tr>
+      </t>
+
+    </table>
+
+  </t>
+
+
+</div>
+
+
+</t>

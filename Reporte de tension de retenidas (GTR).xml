@@ -1,0 +1,980 @@
+<t t-name="x_project_task_worksheet_template_11">
+    
+<!-- ======== ESTILOS INTEGRADOS PARA REPORTE PDF ======== -->
+<style>
+   /* === BASE GENERAL === */
+   body {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #000;
+      background-color: #fff;
+   } 
+ 
+   table {
+      width: 100%; 
+      border-collapse: collapse;
+   } 
+ 
+   th, td {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      vertical-align: middle;
+      text-align: left;
+      background-color: #fff;
+   }
+
+   /* ======== ENCABEZADO PRINCIPAL ======== */
+   .header-reporte {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 10px;
+      table-layout: fixed; /* fuerza proporciones consistentes */
+   }
+
+   /* Banda negra superior */
+   .header-reporte .titulo {
+      background-color: #000;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 6px;
+   }
+
+   /* Banda roja secundaria */
+   .header-reporte .subtitulo {
+      background-color: #d72626;
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px;
+   }
+
+   /* Etiquetas */
+   .header-reporte .label {
+      font-weight: bold;
+      font-size: 12px;
+      background-color: #f9f9f9;
+      text-align: left;
+      width: 20%;
+   }
+
+   /* Anchos de columnas */
+   .header-reporte td:nth-child(1),
+   .header-reporte td:nth-child(3) {
+      width: 22%;
+      background-color: #f9f9f9;
+      font-weight: bold;
+   }
+
+   .header-reporte td:nth-child(2),
+   .header-reporte td:nth-child(4) {
+      width: 28%;
+   }
+
+   /* Ajuste de texto largo */
+   .header-reporte td span {
+      word-wrap: break-word;
+      white-space: normal;
+      display: block;
+   }
+
+   /* Logos */
+   .header-reporte .logo {
+      max-height: 60px;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+   }
+
+   .logo {
+      width: 120px;
+      height: auto;
+      object-fit: contain; 
+      display: block;
+      margin: 0 auto; 
+   }
+
+   /* ======== SECCIONES DE EVIDENCIA Y COMENTARIOS ======== */
+   .evidencia-title, .comentarios-title {
+      background-color: #d72626;
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 6px;
+      border: 1px solid #000;
+      margin: 14px 0 8px 0;
+      font-size: 13px;
+   }
+
+   /* Tarjeta de evidencia */
+   .evidencia-card {
+      background: #fff;
+      padding: 8px;
+      margin-bottom: 12px;
+      page-break-inside: avoid;
+      border: none;
+      box-shadow: none;
+   }
+
+   /* Título de imagen */
+   .img-title {
+      background-color: #d72626;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      padding: 4px 6px;
+      font-size: 12px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #000;
+      text-transform: uppercase; 
+   }
+
+   /* Contenedor de imagen */
+   .custom-image {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      overflow: hidden;
+      border: none;
+      padding: 0;
+      background: none;
+      box-shadow: none;
+   } 
+
+   .custom-image img {
+      width: 100%;
+      height: auto;
+      object-fit: none; /* muestra la imagen completa sin recortes */
+      image-orientation: from-image; /* respeta orientación original EXIF */
+      transform: none; /* sin rotaciones forzadas */
+      max-height: none;
+      image-rendering: auto;
+      display: block;
+      margin: 0 auto;
+   }
+
+   /* Contenedor GPS o imagen general */
+   .gps-container {
+      padding: 6px;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+   }
+
+   /* Texto de comentario */
+   .comentario-text {
+      border-top: 1px solid #000;
+      padding-top: 6px;
+      margin-top: 8px;
+      background: #fff;
+      white-space: pre-wrap;
+      line-height: 1.35;
+      font-size: 12px;
+   }
+
+   /* Etiquetas de información */
+   .info-label {
+      font-weight: bold;
+      display: inline-block;
+      min-width: 90px;
+   }
+
+   /* ======== UTILIDADES ======== */
+   .text-center { text-align: center; }
+   .text-right { text-align: right; }
+   .mb-3 { margin-bottom: 12px; }
+   .mt-4 { margin-top: 16px; }
+
+   /* ======== CONTROL DE PÁGINA ======== */
+   .pagina-sola {
+      page-break-before: always;
+      page-break-after: avoid;
+      margin-top: 15px;
+   }
+
+   /* ======== VERSIÓN PARA IMPRESIÓN ======== */
+   @media print {
+      body {
+         -webkit-print-color-adjust: exact;
+         print-color-adjust: exact;
+      }
+      .gps-container { min-height: 280px; }
+      .custom-image img { width: 100%; height: auto; max-height: none; }
+      .evidencia-card, .header-reporte, .pagina-sola {
+         page-break-inside: avoid;
+      }
+   }
+   /* ===== BLOQUE SPT – PTI ===== */
+
+.spt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.spt-title {
+    text-align: center;
+    padding: 6px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.spt-cell {
+    width: 50%;
+    padding: 6px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.spt-label {
+    font-weight: bold;
+    font-size: 11px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.spt-image {
+    max-width: 100%;
+    max-height: 220px;
+    border: 1px solid #ccc;
+}
+
+/* Opcional: mejora visual en PDF */
+.spt-table tr + tr td {
+    padding-top: 10px;
+} 
+
+ .logo-reporte {
+  display: block;
+  margin: 0 auto;        /* centra horizontal */
+  max-width: 160px;
+  height: 60px;
+  object-fit: contain;
+}
+
+  .info-central {
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .info-central .titulo {
+    font-weight: bold;
+    font-size: 14px;
+  }
+</style>
+<!-- ======== IMÁGENES – EVIDENCIA ======== -->
+<style>
+/* === CONTENEDOR DE IMÁGENES === */
+.evidencia-grid {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  margin-top: 10px;
+}
+
+.evidencia-col {
+  display: table-cell;
+  width: 50%;
+  padding: 6px;
+  vertical-align: top;
+}
+
+.evidencia-img-box {
+  border: 1px solid #000;
+  padding: 4px;
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+.evidencia-img-box img {
+  max-width: 100%;
+  height: 220px;              /* MISMO ALTO */
+  object-fit: contain;        /* NO se descuadra */
+  display: block;
+  margin: 0 auto;
+}
+
+.evidencia-caption {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* ======== TABLA MEDICIONES DE TENSIÓN ======== */
+.tension-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14px;
+  table-layout: auto;
+}
+
+.tension-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid #000;
+  padding: 6px;
+}
+
+.tension-table td {
+  border: 1px solid #000;
+  font-size: 11.5px;
+  vertical-align: top;
+  padding: 6px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.tension-table td.comentario {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Evita quiebres feos */
+.tension-table tr {
+  page-break-inside: avoid;
+}
+</style>
+
+
+<!-- ======== PORTADA – REPORTE DE TENSIÓN DE RETENIDAS ======== -->
+<table class="header-reporte">
+
+  <!-- Banda negra -->
+  <tr>
+    <th colspan="12" class="titulo">
+      PHOENIX TOWER INTERNATIONAL
+    </th>
+  </tr>
+
+  <!-- Banda roja -->
+  <tr>
+    <th colspan="12" class="subtitulo">
+      REPORTE DE TENSIÓN DE RETENIDAS (GTR)
+    </th>
+  </tr>
+
+  <tr>
+    <!-- Logo Cliente -->
+    <td colspan="4" style="text-align:center; vertical-align:middle;">
+      <t t-if="worksheet.x_studio_logo_cliente">
+        <img class="logo-reporte"
+             t-att-src="image_data_uri(worksheet.x_studio_logo_cliente)"/>
+      </t>
+    </td>
+
+    <!-- Información Central -->
+    <td colspan="4" class="info-central" style="vertical-align:middle; text-align:center;">
+      <div>
+        <strong>Proveedor:</strong>
+        <span t-field="worksheet.x_studio_proveedor"/>
+      </div>
+      <div>
+        <strong>Tipo de mantenimiento:</strong>
+        <span t-field="worksheet.x_studio_tipo_de_mantenimiento"/>
+      </div>
+  
+    </td>
+
+    <!-- Logo Compañía -->
+    <td colspan="4" style="text-align:center; vertical-align:middle;">
+      <t t-if="worksheet.x_studio_logo_compaia">
+        <img class="logo-reporte"
+             t-att-src="image_data_uri(worksheet.x_studio_logo_compaia)"/>
+      </t>
+      <t t-else="">
+        <img class="logo-reporte"
+             src="https://www.gh3.cl/images/gh3_final_logo_RGB.png"/>
+      </t>
+    </td>
+  </tr>
+</table>
+
+<!-- ======== IDENTIFICACIÓN DEL SITIO ======== -->
+<table class="header-reporte">
+  <tr>
+    <th colspan="12" class="subtitulo">
+      IDENTIFICACIÓN DEL SITIO
+    </th>
+  </tr>
+</table>
+
+<!-- ======== INFORMACIÓN GENERAL DEL SITE ======== -->
+<!-- ======== INFORMACIÓN GENERAL DEL SITE ======== -->
+<table class="header-reporte">
+
+  <tr>
+    <td class="label">Némónico:</td>
+    <td><span t-field="worksheet.x_studio_nemnico"/></td>
+
+    <td class="label">Nombre del Site:</td>
+    <td><span t-field="worksheet.x_studio_nombre_del_site"/></td>
+  </tr>
+
+  <tr>
+    <td class="label">Dirección:</td>
+    <td><span t-field="worksheet.x_studio_direccin"/></td>
+
+    <td class="label">Tipo de Torre:</td>
+    <td><span t-field="worksheet.x_studio_tipo_de_torre"/></td>
+  </tr>
+
+  <tr>
+    <td class="label">Tipo de Estructura:</td>
+    <td><span t-field="worksheet.x_studio_tipo_estructura"/></td>
+
+    <td class="label">Altura Estructura (m):</td>
+    <td><span t-field="worksheet.x_studio_altura_esa_m"/></td>
+  </tr>
+
+  <tr>
+    <td class="label">Latitud:</td>
+    <td>
+      <span t-field="worksheet.x_studio_related_field_i8_1ium5mgg8"
+            t-options="{&quot;digits&quot;:[12,6]}"/>
+    </td>
+
+    <td class="label">Longitud:</td>
+    <td>
+      <span t-field="worksheet.x_studio_longitud"
+            t-options="{&quot;digits&quot;:[12,6]}"/>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Fecha Planificada:</td>
+    <td>
+      <span t-field="worksheet.x_studio_fecha_planificada"
+            t-options='{"widget": "date"}'/>
+    </td>
+
+    <td class="label">Fecha Término:</td>
+    <td>
+      <span t-field="worksheet.x_studio_fecha_termino"
+            t-options='{"widget": "date"}'/>
+    </td>
+  </tr>
+
+</table>
+
+<!-- ===================== SECCIÓN: ANCLAS ===================== -->
+<table class="header-reporte" style="width:100%; border-collapse:collapse;">
+
+  <tr>
+    <!-- ================= TABLA IZQUIERDA ================= -->
+    <td style="width:50%; vertical-align:top; padding-right:6px;">
+
+      <!-- TÍTULO TABLA -->
+      <table class="header-reporte">
+        <tr>
+          <th colspan="3" class="subtitulo">
+            Ancla A / AA / AAA / AAAA Azimuth
+          </th>
+        </tr>
+      </table>
+
+      <!-- TABLA DATOS -->
+      <table class="header-reporte">
+        <tr>
+          <th>Ancla</th>
+          <th>Distancia Ancla (m)</th>
+          <th>Altura en Torre (m)</th>
+        </tr>
+
+        <t t-if="worksheet.x_studio_one2many_field_1o8_1jgngoumb">
+          <t t-foreach="worksheet.x_studio_one2many_field_1o8_1jgngoumb" t-as="linea">
+            <tr>
+              <td>
+                <span t-field="linea.x_studio_ancla_a"/>
+              </td>
+              <td class="text-center">
+                <span t-field="linea.x_studio_distancia_ancla"/>
+              </td>
+              <td class="text-center">
+                <span t-field="linea.x_studio_altura_en_torre_de_ancla"/>
+              </td>
+            </tr>
+          </t>
+        </t>
+
+        <t t-if="not worksheet.x_studio_one2many_field_1o8_1jgngoumb">
+          <tr>
+            <td colspan="3" class="text-center" style="font-style:italic;">
+              No se registran anclas
+            </td>
+          </tr>
+        </t>
+
+      </table>
+
+    </td>
+
+    <!-- ================= TABLA DERECHA ================= -->
+    <td style="width:50%; vertical-align:top; padding-left:6px;">
+
+      <!-- TÍTULO TABLA -->
+      <table class="header-reporte">
+        <tr>
+          <th colspan="3" class="subtitulo">
+            Ancla B / BB / BBB / BBBB Azimuth
+          </th>
+        </tr>
+      </table>
+
+      <!-- TABLA DATOS -->
+      <table class="header-reporte">
+        <tr>
+          <th>Ancla</th>
+          <th>Altura en Torre (m)</th>
+          <th>Distancia Ancla (m)</th>
+        </tr>
+
+        <t t-if="worksheet.x_studio_ancla_bbbbbbbbbbazimuth">
+          <t t-foreach="worksheet.x_studio_ancla_bbbbbbbbbbazimuth" t-as="linea">
+            <tr>
+              <td>
+                <span t-field="linea.x_studio_ancla_b"/>
+              </td>
+              <td class="text-center">
+                <span t-field="linea.x_studio_altura_en_torre_de_ancla_b"/>
+              </td>
+              <td class="text-center">
+                <span t-field="linea.x_studio_distancia_ancla_b"/>
+              </td>
+            </tr>
+          </t>
+        </t>
+
+        <t t-if="not worksheet.x_studio_ancla_bbbbbbbbbbazimuth">
+          <tr>
+            <td colspan="3" class="text-center" style="font-style:italic;">
+              No se registran anclas
+            </td>
+          </tr>
+        </t>
+
+      </table>
+
+    </td>
+  </tr>
+
+</table>
+
+<!-- ===================== SECCIÓN: ANCLAS (FILA INFERIOR) ===================== -->
+<table class="header-reporte" style="width:100%; border-collapse:collapse; margin-top:12px;">
+
+  <tr>
+    <!-- ================= TABLA IZQUIERDA ================= -->
+    <td style="width:50%; vertical-align:top; padding-right:6px;">
+
+      <!-- TÍTULO TABLA -->
+      <table class="header-reporte">
+        <tr>
+          <th colspan="3" class="subtitulo">
+            Ancla C / CC / CCC / CCCC Azimuth
+          </th>
+        </tr>
+      </table>
+
+      <!-- TABLA DATOS -->
+      <table class="header-reporte">
+        <tr>
+          <th>Ancla</th>
+          <th>Distancia Ancla (m)</th>
+          <th>Altura en Torre (m)</th>
+        </tr>
+
+        <t t-if="worksheet.x_studio_one2many_field_5ed_1jgnhk249">
+          <t t-foreach="worksheet.x_studio_one2many_field_5ed_1jgnhk249" t-as="linea">
+            <tr>
+              <td>
+                <span t-field="linea.x_studio_ancla_c"/>
+              </td>
+              <td class="text-center">
+                <span t-field="linea.x_studio_distancia_ancla_c"/>
+              </td>
+              <td class="text-center">
+                <span t-field="linea.x_studio_altura_en_torre_de_ancla_c"/>
+              </td>
+            </tr>
+          </t>
+        </t>
+
+        <t t-if="not worksheet.x_studio_one2many_field_5ed_1jgnhk249">
+          <tr>
+            <td colspan="3" class="text-center" style="font-style:italic;">
+              No se registran anclas
+            </td>
+          </tr>
+        </t>
+
+      </table>
+
+    </td>
+
+    <!-- ================= TABLA DERECHA ================= -->
+    <td style="width:50%; vertical-align:top; padding-left:6px;">
+
+      <!-- TÍTULO TABLA -->
+      <table class="header-reporte">
+        <tr>
+          <th colspan="3" class="subtitulo">
+            Ancla D / DD / DDD / DDDD Azimuth
+          </th>
+        </tr>
+      </table>
+
+      <!-- TABLA DATOS -->
+      <table class="header-reporte">
+        <tr>
+          <th>Ancla</th>
+          <th>Distancia Ancla (m)</th>
+          <th>Altura en Torre (m)</th>
+        </tr>
+
+        <t t-if="worksheet.x_studio_ancla_dddddddddd_azimuth">
+          <t t-foreach="worksheet.x_studio_ancla_dddddddddd_azimuth" t-as="linea">
+            <tr>
+              <td>
+                <span t-field="linea.x_studio_ancla_d"/>
+              </td>
+              <td class="text-center">
+                <span t-field="linea.x_studio_distancia_ancla_d"/>
+              </td>
+              <td class="text-center">
+                <span t-field="linea.x_studio_altura_en_torre_de_ancla_d"/>
+              </td>
+            </tr>
+          </t>
+        </t>
+
+        <t t-if="not worksheet.x_studio_ancla_dddddddddd_azimuth">
+          <tr>
+            <td colspan="3" class="text-center" style="font-style:italic;">
+              No se registran anclas
+            </td>
+          </tr>
+        </t>
+
+      </table>
+
+    </td>
+  </tr>
+
+</table>
+
+<!-- ===================== MEDICIONES DE TENSIÓN ===================== -->
+<table class="tension-table">
+
+  <tr>
+    <th colspan="6" class="subtitulo">
+      MEDICIONES DE TENSIÓN DE RETENIDAS
+    </th>
+  </tr>
+
+  <tr>
+    <th style="width:10%">Ancla</th>
+    <th style="width:16%">Tipo de Cable</th>
+    <th style="width:10%">Diámetro</th>
+    <th style="width:10%">Temp (°C)</th>
+    <th style="width:12%">Medición (kN)</th>
+    <th style="width:42%">Comentario</th>
+  </tr>
+
+  <t t-if="worksheet.x_studio_one2many_field_382_1jgnjgudb">
+    <t t-foreach="worksheet.x_studio_one2many_field_382_1jgnjgudb" t-as="linea">
+      <tr>
+        <td class="text-center">
+          <span t-field="linea.x_studio_ancla"/>
+        </td>
+
+        <td>
+          <span t-field="linea.x_studio_tipo_de_cable"/>
+        </td>
+
+        <td class="text-center">
+          <span t-field="linea.x_studio_dimetro_del_cable"/>
+        </td>
+
+        <td class="text-center">
+          <span t-field="linea.x_studio_temperatura"/>
+        </td>
+
+        <td class="text-center">
+          <span t-field="linea.x_studio_medicin_kilonewton"/>
+        </td>
+
+        <td class="comentario">
+          <span t-field="linea.x_studio_comentario"/>
+        </td>
+      </tr>
+    </t>
+  </t>
+
+  <t t-if="not worksheet.x_studio_one2many_field_382_1jgnjgudb">
+    <tr>
+      <td colspan="6" style="text-align:center; font-style:italic;">
+        No se registran mediciones de tensión.
+      </td>
+    </tr>
+  </t>
+
+</table>
+<div class="pagina-sola">
+
+  <div class="evidencia-title">
+    MEDICIONES ANCLA A / AA / AAA / AAAA
+  </div>
+
+  <table style="width:100%; border-collapse:collapse;">
+
+    <tr>
+      <!-- A -->
+      <td style="width:50%; padding:6px; vertical-align:top;">
+        <t t-if="worksheet.x_studio_foto_ancla_a">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla A</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_a)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+
+      <!-- AA -->
+      <td style="width:50%; padding:6px; vertical-align:top;">
+        <t t-if="worksheet.x_studio_binary_field_3r5_1iulfapmu">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla AA</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_binary_field_3r5_1iulfapmu)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+    </tr>
+
+    <tr>
+      <!-- AAA -->
+      <td style="width:50%; padding:6px; vertical-align:top;">
+        <t t-if="worksheet.x_studio_foto_ancla_aaa">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla AAA</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_aaa)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+
+      <!-- AAAA -->
+      <td style="width:50%; padding:6px; vertical-align:top;">
+        <t t-if="worksheet.x_studio_foto_ancla_aaaa">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla AAAA</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_aaaa)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+    </tr>
+
+  </table>
+</div>
+
+<div class="pagina-sola">
+
+  <div class="evidencia-title">
+    MEDICIONES ANCLA B / BB / BBB / BBBB
+  </div>
+
+  <table style="width:100%; border-collapse:collapse;">
+
+    <tr>
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_b">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla B</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_b)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_bb">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla BB</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_bb)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_bbb">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla BBB</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_bbb)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_bbbb">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla BBBB</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_bbbb)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+    </tr>
+
+  </table>
+</div>
+<div class="pagina-sola">
+
+  <div class="evidencia-title">
+    MEDICIONES ANCLA C / CC / CCC / CCCC
+  </div>
+
+  <table style="width:100%; border-collapse:collapse;">
+
+    <tr>
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_c">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla C</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_c)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_cc">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla CC</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_cc)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_ccc">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla CCC</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_ccc)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_cccc">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla CCCC</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_cccc)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+    </tr>
+
+  </table>
+</div>
+<div class="pagina-sola">
+
+  <div class="evidencia-title">
+    MEDICIONES ANCLA D / DD / DDD / DDDD
+  </div>
+
+  <table style="width:100%; border-collapse:collapse;">
+
+    <tr>
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_d">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla D</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_d)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_dd">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla DD</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_dd)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_ddd">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla DDD</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_ddd)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+
+      <td style="width:50%; padding:6px;">
+        <t t-if="worksheet.x_studio_foto_ancla_dddd">
+          <div class="evidencia-card">
+            <div class="img-title">Ancla DDDD</div>
+            <div class="custom-image">
+              <img t-att-src="image_data_uri(worksheet.x_studio_foto_ancla_dddd)"/>
+            </div>
+          </div>
+        </t>
+      </td>
+    </tr>
+
+  </table>
+</div>
+
+
+
+
+    
+    
+    
+</t>

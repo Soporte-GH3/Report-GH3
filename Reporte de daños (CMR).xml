@@ -291,7 +291,7 @@
   <!-- Banda roja -->
   <tr>
     <th colspan="12" class="subtitulo">
-      REPORTE DE DAÑOS EN EL MANTENIMIENTO PREVENTIVO
+      REPORTE DE DAÑOS EN EL MANTENIMIENTO PREVENTIVO (CMR)
     </th>
   </tr>
 
@@ -330,6 +330,10 @@
   </td>
 </tr>
 
+
+</table>
+
+<table class="header-reporte">
   <tr>
     <th colspan="12" class="subtitulo">IDENTIFICACIÓN DEL SITIO</th>
   </tr>

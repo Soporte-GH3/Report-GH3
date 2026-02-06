@@ -1,0 +1,508 @@
+<t t-name="x_project_task_worksheet_template_13">
+      
+<!-- ======== ESTILOS INTEGRADOS PARA REPORTE PDF ======== -->
+<style>
+   /* === BASE GENERAL === */
+   body {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #000;
+      background-color: #fff;
+   } 
+ 
+   table {
+      width: 100%; 
+      border-collapse: collapse;
+   } 
+ 
+   th, td {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      vertical-align: middle;
+      text-align: left;
+      background-color: #fff;
+   }
+
+   /* ======== ENCABEZADO PRINCIPAL ======== */
+   .header-reporte {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 10px;
+      table-layout: fixed; /* fuerza proporciones consistentes */
+   }
+
+   /* Banda negra superior */
+   .header-reporte .titulo {
+      background-color: #000;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 6px;
+   }
+
+   /* Banda roja secundaria */
+   .header-reporte .subtitulo {
+      background-color: #d72626;
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px;
+   }
+
+   /* Etiquetas */
+   .header-reporte .label {
+      font-weight: bold;
+      font-size: 12px;
+      background-color: #f9f9f9;
+      text-align: left;
+      width: 20%;
+   }
+
+   /* Anchos de columnas */
+   .header-reporte td:nth-child(1),
+   .header-reporte td:nth-child(3) {
+      width: 22%;
+      background-color: #f9f9f9;
+      font-weight: bold;
+   }
+
+   .header-reporte td:nth-child(2),
+   .header-reporte td:nth-child(4) {
+      width: 28%;
+   }
+
+   /* Ajuste de texto largo */
+   .header-reporte td span {
+      word-wrap: break-word;
+      white-space: normal;
+      display: block;
+   }
+
+   /* Logos */
+   .header-reporte .logo {
+      max-height: 60px;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+   }
+
+   .logo {
+      width: 120px;
+      height: auto;
+      object-fit: contain; 
+      display: block;
+      margin: 0 auto; 
+   }
+
+   /* ======== SECCIONES DE EVIDENCIA Y COMENTARIOS ======== */
+   .evidencia-title, .comentarios-title {
+      background-color: #d72626;
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 6px;
+      border: 1px solid #000;
+      margin: 14px 0 8px 0;
+      font-size: 13px;
+   }
+
+   /* Tarjeta de evidencia */
+   .evidencia-card {
+      background: #fff;
+      padding: 8px;
+      margin-bottom: 12px;
+      page-break-inside: avoid;
+      border: none;
+      box-shadow: none;
+   }
+
+   /* Título de imagen */
+   .img-title {
+      background-color: #d72626;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      padding: 4px 6px;
+      font-size: 12px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #000;
+      text-transform: uppercase; 
+   }
+
+   /* Contenedor de imagen */
+   .custom-image {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      overflow: hidden;
+      border: none;
+      padding: 0;
+      background: none;
+      box-shadow: none;
+   } 
+
+   .custom-image img {
+      width: 100%;
+      height: auto;
+      object-fit: none; /* muestra la imagen completa sin recortes */
+      image-orientation: from-image; /* respeta orientación original EXIF */
+      transform: none; /* sin rotaciones forzadas */
+      max-height: none;
+      image-rendering: auto;
+      display: block;
+      margin: 0 auto;
+   }
+
+   /* Contenedor GPS o imagen general */
+   .gps-container {
+      padding: 6px;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+   }
+
+   /* Texto de comentario */
+   .comentario-text {
+      border-top: 1px solid #000;
+      padding-top: 6px;
+      margin-top: 8px;
+      background: #fff;
+      white-space: pre-wrap;
+      line-height: 1.35;
+      font-size: 12px;
+   }
+
+   /* Etiquetas de información */
+   .info-label {
+      font-weight: bold;
+      display: inline-block;
+      min-width: 90px;
+   }
+
+   /* ======== UTILIDADES ======== */
+   .text-center { text-align: center; }
+   .text-right { text-align: right; }
+   .mb-3 { margin-bottom: 12px; }
+   .mt-4 { margin-top: 16px; }
+
+   /* ======== CONTROL DE PÁGINA ======== */
+.pagina-sola {
+   page-break-before: auto;
+   page-break-after: always;
+   margin-top: 15px;
+}
+
+   /* ======== VERSIÓN PARA IMPRESIÓN ======== */
+   @media print {
+      body {
+         -webkit-print-color-adjust: exact;
+         print-color-adjust: exact;
+      }
+      .gps-container { min-height: 280px; }
+      .custom-image img { width: 100%; height: auto; max-height: none; }
+      .evidencia-card, .header-reporte, .pagina-sola {
+         page-break-inside: avoid;
+      }
+   }
+   /* ===== BLOQUE SPT – PTI ===== */
+
+.spt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.spt-title {
+    text-align: center;
+    padding: 6px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.spt-cell {
+    width: 50%;
+    padding: 6px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.spt-label {
+    font-weight: bold;
+    font-size: 11px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.spt-image {
+    max-width: 100%;
+    max-height: 220px;
+    border: 1px solid #ccc;
+}
+
+/* Opcional: mejora visual en PDF */
+.spt-table tr + tr td {
+    padding-top: 10px;
+}
+
+</style>
+
+
+    <!-- =========================================================
+     PORTADA | IDENTIFICACIÓN DEL SITIO – SISTEMA DE ASCENSO
+========================================================= -->
+
+<div class="pagina-sola">
+
+  <!-- ================== LOGOS ================== -->
+
+
+  <!-- ================== TÍTULO PRINCIPAL ================== -->
+ <div class="evidencia-title" style="margin-bottom:15px; text-align:center; font-size:16px;">
+      Reporte Sistema de Ascenso (SCDR)
+    </div>
+
+  <!-- ================== IDENTIFICACIÓN DEL SITIO ================== -->
+  <table class="header-reporte">
+    <tr>
+      <th colspan="12" class="subtitulo">IDENTIFICACIÓN DEL SITIO</th>
+    </tr>
+  </table>
+
+  <!-- ================== INFORMACIÓN GENERAL ================== -->
+  <table class="header-reporte">
+
+    <tr>
+      <td class="label">Nombre del Sitio:</td>
+      <td><span t-field="worksheet.x_studio_nombre_del_sitio"/></td>
+      <td class="label">Nemónico:</td>
+      <td><span t-field="worksheet.x_studio_nemnico"/></td>
+    </tr>
+
+    <tr>
+      <td class="label">Dirección:</td>
+      <td><span t-field="worksheet.x_studio_direccin"/></td>
+      <td class="label">Tipo de Sitio:</td>
+      <td><span t-field="worksheet.x_studio_tipo_de_sitio"/></td>
+    </tr>
+
+    <tr>
+      <td class="label">Tipo de Estructura:</td>
+      <td><span t-field="worksheet.x_studio_tipo_de_estructura"/></td>
+      <td class="label">Altura Torre (m):</td>
+      <td><span t-field="worksheet.x_studio_altura_m"/></td>
+    </tr>
+
+    <tr>
+      <td class="label">Latitud:</td>
+      <td>
+        <span t-field="worksheet.x_studio_latitud" t-options="{&quot;digits&quot;:[12,6]}"/>
+      </td>
+      <td class="label">Longitud:</td>
+      <td>
+        <span t-field="worksheet.x_studio_longitud" t-options="{&quot;digits&quot;:[12,6]}"/>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="label">Fecha Planificada:</td>
+      <td><span t-field="worksheet.x_studio_fecha_planificada"/></td>
+      <td class="label"/>
+      <td/>
+    </tr>
+
+  </table>
+
+
+
+    <!-- =========================================================
+     HOJA ÚNICA | HERRAJE + PRENSACABLES + TRAMOS + GRÁFICO + EVIDENCIAS
+========================================================= -->
+
+ 
+
+  <!-- =====================================================
+       GRÁFICO ESTADO SISTEMA DE ASCENSO
+  ===================================================== -->
+
+
+
+  <!-- ================== HERRAJE ================== -->
+
+  <div class="evidencia-title">Herraje</div>
+
+  <table class="header-reporte" style="width:100%; border-collapse:collapse;">
+    <tr>
+      <th class="label">Ítem</th>
+      <th class="label" style="text-align:center;">Estado</th>
+    </tr>
+    <tr>
+      <td class="label">Herraje Inferior</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_estado_herraje_inferior"/></td>
+    </tr>
+    <tr>
+      <td class="label">Herraje Superior</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_estado_herraje_superior"/></td>
+    </tr>
+    <tr>
+      <td class="label">Estado del Cable</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_estado_del_cable_2"/></td>
+    </tr>
+    <tr>
+      <td class="label">Diámetro del Cable</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_dimetro_del_cable_2"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="border-top:1px solid #1f2a44;"/>
+    </tr>
+    <tr>
+      <td class="label"><strong>Comentario Técnico</strong></td>
+      <td><span t-field="worksheet.x_studio_comentario"/></td>
+    </tr>
+  </table>
+
+  <!-- ================== PRENSACABLES ================== -->
+
+  <div class="evidencia-title" style="margin-top:20px;">Prensacables</div>
+
+  <table class="header-reporte" style="width:100%; border-collapse:collapse;">
+    <tr>
+      <th class="label">Ítem</th>
+      <th class="label" style="text-align:center;">Detalle</th>
+    </tr>
+    <tr>
+      <td class="label">Cantidad</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_cantidad_2"/></td>
+    </tr>
+    <tr>
+      <td class="label">Distanciamiento</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_distanciamiento_2"/></td>
+    </tr>
+    <tr>
+      <td class="label">Estado Prensacables</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_estado_prensacables"/></td>
+    </tr>
+    <tr>
+      <td class="label">Certificación</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_certificacin_1"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="border-top:1px solid #1f2a44;"/>
+    </tr>
+    <tr>
+      <td class="label"><strong>Comentario Técnico</strong></td>
+      <td><span t-field="worksheet.x_studio_comentario_1"/></td>
+    </tr>
+  </table>
+
+  <!-- ================== TRAMOS / ESCALERAS ================== -->
+
+  <div class="evidencia-title" style="margin-top:20px;">Tramos (Escaleras)</div>
+
+  <table class="header-reporte" style="width:100%; border-collapse:collapse;">
+    <tr>
+      <th class="label">Ítem</th>
+      <th class="label" style="text-align:center;">Detalle</th>
+    </tr>
+    <tr>
+      <td class="label">N° de Tramos</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_n_tramos"/></td>
+    </tr>
+    <tr>
+      <td class="label">N° de Uniones</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_n_uniones"/></td>
+    </tr>
+    <tr>
+      <td class="label">Diámetro del Tornillo</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_dimetro_tornillo"/></td>
+    </tr>
+    <tr>
+      <td class="label">Estado de la Escalera</td>
+      <td style="text-align:center;"><span t-field="worksheet.x_studio_estado_escalera_1"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="border-top:1px solid #1f2a44;"/>
+    </tr>
+    <tr>
+      <td class="label"><strong>Comentario Técnico</strong></td>
+      <td><span t-field="worksheet.x_studio_comentario_2"/></td>
+    </tr>
+  </table>
+
+
+
+    
+    </div>
+    
+    
+    <!-- ===================== SECCIÓN: EVIDENCIA HERRAJES Y UNIÓN DE TRAMOS ===================== -->
+<div class="pagina-sola">
+
+  <!-- ================== DEFINICIÓN DE IMÁGENES ================== -->
+  <t t-set="imagenes_union_tramos" t-value="[     ('x_studio_herraje_inferior', 'Herraje Inferior'),     ('x_studio_herraje_superior', 'Herraje Superior'),     ('x_studio_prensacables_inferior', 'Prensacables Inferior'),     ('x_studio_prensacables_superior', 'Prensacables Superior'),     ('x_studio_tipo_de_carro', 'Tipo de Carro'),     ('x_studio_observacin_unin_tramos', 'Observación Unión de Tramos'),     ('x_studio_observacin_mordaza', 'Observación Mordaza')   ]"/>
+
+  <!-- ================== FILTRAR SOLO CAMPOS CON IMAGEN ================== -->
+  <t t-set="imagenes_union_tramos_validas" t-value="[ (campo, titulo) for campo, titulo in imagenes_union_tramos if worksheet[campo] ]"/>
+
+  <t t-if="imagenes_union_tramos_validas">
+
+    <!-- ================== TÍTULO ================== -->
+    <div class="evidencia-title" style="margin:20px 0 10px 0;">
+      Evidencia Herrajes, Prensacables y Unión de Tramos
+    </div>
+
+    <!-- ================== CONTENEDOR DE IMÁGENES ================== -->
+    <table class="evidencias-container" style="width:100%; border-collapse:collapse; page-break-inside:avoid;">
+
+      <t t-set="total_imgs" t-value="len(imagenes_union_tramos_validas)"/>
+
+      <!-- ================== RECORRER EN PARES ================== -->
+      <t t-foreach="range(0, total_imgs, 2)" t-as="i">
+        <tr>
+
+          <!-- COLUMNA IZQUIERDA -->
+          <td style="width:50%; padding:6px; vertical-align:top;">
+            <t t-if="i &lt; total_imgs">
+              <div class="evidencia-card">
+                <div class="img-title" style="text-align:center; font-size:11px;">
+                  <t t-esc="imagenes_union_tramos_validas[i][1]"/>
+                </div>
+                <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_union_tramos_validas[i][0]].decode('utf-8')" style="width:100%; max-height:320px; object-fit:contain;"/>
+              </div>
+            </t>
+          </td>
+
+          <!-- COLUMNA DERECHA -->
+          <td style="width:50%; padding:6px; vertical-align:top;">
+            <t t-if="i+1 &lt; total_imgs">
+              <div class="evidencia-card">
+                <div class="img-title" style="text-align:center; font-size:11px;">
+                  <t t-esc="imagenes_union_tramos_validas[i+1][1]"/>
+                </div>
+                <img t-att-src="'data:image/png;base64,%s' % worksheet[imagenes_union_tramos_validas[i+1][0]].decode('utf-8')" style="width:100%; max-height:320px; object-fit:contain;"/>
+              </div>
+            </t>
+          </td>
+
+        </tr>
+      </t>
+
+    </table>
+
+  </t>
+
+</div>
+
+    
+    
+    
+</t>

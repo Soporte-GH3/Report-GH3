@@ -1,0 +1,681 @@
+<t t-name="x_project_task_worksheet_template_12">
+    
+      
+<!-- ======== ESTILOS INTEGRADOS PARA REPORTE PDF ======== -->
+<style>
+   /* === BASE GENERAL === */
+   body {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #000;
+      background-color: #fff;
+   } 
+ 
+   table {
+      width: 100%; 
+      border-collapse: collapse;
+   } 
+ 
+   th, td {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      vertical-align: middle;
+      text-align: left;
+      background-color: #fff;
+   }
+
+   /* ======== ENCABEZADO PRINCIPAL ======== */
+   .header-reporte {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 10px;
+      table-layout: fixed; /* fuerza proporciones consistentes */
+   }
+
+   /* Banda negra superior */
+   .header-reporte .titulo {
+      background-color: #000;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 6px;
+   }
+
+   /* Banda roja secundaria */
+   .header-reporte .subtitulo {
+      background-color: #d72626;
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px;
+   }
+
+   /* Etiquetas */
+   .header-reporte .label {
+      font-weight: bold;
+      font-size: 12px;
+      background-color: #f9f9f9;
+      text-align: left;
+      width: 20%;
+   }
+
+   /* Anchos de columnas */
+   .header-reporte td:nth-child(1),
+   .header-reporte td:nth-child(3) {
+      width: 22%;
+      background-color: #f9f9f9;
+      font-weight: bold;
+   }
+
+   .header-reporte td:nth-child(2),
+   .header-reporte td:nth-child(4) {
+      width: 28%;
+   }
+
+   /* Ajuste de texto largo */
+   .header-reporte td span {
+      word-wrap: break-word;
+      white-space: normal;
+      display: block;
+   }
+
+   /* Logos */
+   .header-reporte .logo {
+      max-height: 60px;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+   }
+
+   .logo {
+      width: 120px;
+      height: auto;
+      object-fit: contain; 
+      display: block;
+      margin: 0 auto; 
+   }
+
+   /* ======== SECCIONES DE EVIDENCIA Y COMENTARIOS ======== */
+   .evidencia-title, .comentarios-title {
+      background-color: #d72626;
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 6px;
+      border: 1px solid #000;
+      margin: 14px 0 8px 0;
+      font-size: 13px;
+   }
+
+   /* Tarjeta de evidencia */
+   .evidencia-card {
+      background: #fff;
+      padding: 8px;
+      margin-bottom: 12px;
+      page-break-inside: avoid;
+      border: none;
+      box-shadow: none;
+   }
+
+   /* Título de imagen */
+   .img-title {
+      background-color: #d72626;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      padding: 4px 6px;
+      font-size: 12px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #000;
+      text-transform: uppercase; 
+   }
+
+   /* Contenedor de imagen */
+   .custom-image {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      overflow: hidden;
+      border: none;
+      padding: 0;
+      background: none;
+      box-shadow: none;
+   } 
+
+   .custom-image img {
+      width: 100%;
+      height: auto;
+      object-fit: none; /* muestra la imagen completa sin recortes */
+      image-orientation: from-image; /* respeta orientación original EXIF */
+      transform: none; /* sin rotaciones forzadas */
+      max-height: none;
+      image-rendering: auto;
+      display: block;
+      margin: 0 auto;
+   }
+
+   /* Contenedor GPS o imagen general */
+   .gps-container {
+      padding: 6px;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+   }
+
+   /* Texto de comentario */
+   .comentario-text {
+      border-top: 1px solid #000;
+      padding-top: 6px;
+      margin-top: 8px;
+      background: #fff;
+      white-space: pre-wrap;
+      line-height: 1.35;
+      font-size: 12px;
+   }
+
+   /* Etiquetas de información */
+   .info-label {
+      font-weight: bold;
+      display: inline-block;
+      min-width: 90px;
+   }
+
+   /* ======== UTILIDADES ======== */
+   .text-center { text-align: center; }
+   .text-right { text-align: right; }
+   .mb-3 { margin-bottom: 12px; }
+   .mt-4 { margin-top: 16px; }
+
+   /* ======== CONTROL DE PÁGINA ======== */
+   .pagina-sola {
+      page-break-before: always;
+      page-break-after: avoid;
+      margin-top: 15px;
+   }
+
+   /* ======== VERSIÓN PARA IMPRESIÓN ======== */
+   @media print {
+      body {
+         -webkit-print-color-adjust: exact;
+         print-color-adjust: exact;
+      }
+      .gps-container { min-height: 280px; }
+      .custom-image img { width: 100%; height: auto; max-height: none; }
+      .evidencia-card, .header-reporte, .pagina-sola {
+         page-break-inside: avoid;
+      }
+   }
+   /* ===== BLOQUE SPT – PTI ===== */
+
+.spt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.spt-title {
+    text-align: center;
+    padding: 6px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.spt-cell {
+    width: 50%;
+    padding: 6px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.spt-label {
+    font-weight: bold;
+    font-size: 11px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.spt-image {
+    max-width: 100%;
+    max-height: 220px;
+    border: 1px solid #ccc;
+}
+
+/* Opcional: mejora visual en PDF */
+.spt-table tr + tr td {
+    padding-top: 10px;
+} 
+
+ .logo-reporte {
+  display: block;
+  margin: 0 auto;        /* centra horizontal */
+  max-width: 160px;
+  height: 60px;
+  object-fit: contain;
+}
+
+  .info-central {
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .info-central .titulo {
+    font-weight: bold;
+    font-size: 14px;
+  }
+</style>
+<!-- ======== IMÁGENES – EVIDENCIA ======== -->
+<style>
+/* === CONTENEDOR DE IMÁGENES === */
+.evidencia-grid {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  margin-top: 10px;
+}
+
+.evidencia-col {
+  display: table-cell;
+  width: 50%;
+  padding: 6px;
+  vertical-align: top;
+}
+
+.evidencia-img-box {
+  border: 1px solid #000;
+  padding: 4px;
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+.evidencia-img-box img {
+  max-width: 100%;
+  height: 220px;              /* MISMO ALTO */
+  object-fit: contain;        /* NO se descuadra */
+  display: block;
+  margin: 0 auto;
+}
+
+.evidencia-caption {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* ======== TABLA MEDICIONES DE TENSIÓN ======== */
+.tension-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14px;
+  table-layout: auto;
+}
+
+.tension-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid #000;
+  padding: 6px;
+}
+
+.tension-table td {
+  border: 1px solid #000;
+  font-size: 11.5px;
+  vertical-align: top;
+  padding: 6px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.tension-table td.comentario {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Evita quiebres feos */
+.tension-table tr {
+  page-break-inside: avoid;
+}
+</style>
+    
+   <table class="header-reporte">
+
+  <!-- Banda negra -->
+  <tr>
+    <th colspan="4" class="titulo">
+      PHOENIX TOWER INTERNATIONAL
+    </th>
+  </tr>
+
+  <!-- Banda roja -->
+  <tr>
+    <th colspan="4" class="subtitulo">
+      REPORTE DE VERTICALIDAD DE TORRE (VSR)
+    </th>
+  </tr>
+
+  <!-- Logos + info central -->
+  <tr>
+    <td style="text-align:center; vertical-align:middle;">
+      <t t-if="worksheet.x_studio_logo_cliente_1">
+        <img class="logo-reporte" t-att-src="image_data_uri(worksheet.x_studio_logo_cliente_1)"/>
+      </t>
+    </td>
+
+    <td colspan="2" class="info-central" style="vertical-align:middle;">
+      <div class="titulo">
+        <span t-field="worksheet.x_studio_nombre_del_sitio_1"/>
+      </div>
+      <div>
+        <strong>ID Cliente:</strong>
+        <span t-field="worksheet.x_studio_id_cliente"/>
+      </div>
+      <div>
+        <strong>Dirección:</strong>
+        <span t-field="worksheet.x_studio_direccin_1"/>
+      </div>
+    </td>
+
+    <td style="text-align:center; vertical-align:middle;">
+      <t t-if="worksheet.x_studio_logo_compaia">
+        <img class="logo-reporte" t-att-src="image_data_uri(worksheet.x_studio_logo_compaia)"/>
+      </t>
+    </td>
+  </tr>
+
+  <!-- Info técnica -->
+  <tr>
+    <td class="label">Tipo de torre</td>
+    <td>
+      <span t-field="worksheet.x_studio_tipo_de_torre"/>
+    </td>
+    <td class="label">Altura torre</td>
+    <td>
+      <span t-field="worksheet.x_studio_altura_torre"/> m
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Región</td>
+    <td>
+      <span t-field="worksheet.x_studio_regin"/>
+    </td>
+    <td class="label">Comuna</td>
+    <td>
+      <span t-field="worksheet.x_studio_comuna"/>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Latitud</td>
+    <td>
+      <span t-field="worksheet.x_studio_latitud_2"/>
+    </td>
+    <td class="label">Longitud</td>
+    <td>
+      <span t-field="worksheet.x_studio_longitud_2"/>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">Fecha inicio</td>
+    <td>
+      <span t-field="worksheet.x_studio_fecha_de_inicio"/>
+    </td>
+    <td class="label">Fecha término</td>
+    <td>
+      <span t-field="worksheet.x_studio_fecha_final"/>
+    </td>
+  </tr>
+
+</table>
+
+
+
+<!-- ===================== SECCIÓN: REPORTE DE VERTICALIDAD ===================== -->
+<div class="pagina-sola" style="page-break-before: always; margin-top: 20px;">
+
+  
+  <!-- ======== TÍTULOS ======== -->
+  <table class="header-reporte">
+    <tr>
+      <th colspan="12" class="subtitulo">REPORTE DE VERTICALIDAD</th>
+    </tr>
+  </table>
+
+  <table class="header-reporte">
+    <tr>
+      <th colspan="12" class="subtitulo">DETALLE REFLEXIÓN MEDIDA DE TORRE</th>
+    </tr>
+  </table>
+
+</div>  
+
+<!-- ================= TABLA DEFLEXIÓN POR TRAMO ================= -->
+<table class="header-reporte mt-4" style="width:100%;">
+
+  <thead>
+    <tr>
+      <th class="text-center bg-secondary bg-opacity-15">Tramo Torre (mm)</th>
+      <th class="text-center bg-secondary bg-opacity-15">
+        Deflexión Permisible<br/>(H/400)
+      </th>
+      <th class="text-center bg-secondary bg-opacity-15">
+        Deflexión Medida<br/>(GON)
+      </th>
+      <th class="text-center bg-secondary bg-opacity-15">
+        Ángulo<br/>(rad)
+      </th>
+      <th class="text-center bg-secondary bg-opacity-15">
+        Deflexión Equivalente<br/>(mm)
+      </th>
+      <th class="text-center bg-secondary bg-opacity-15">Estado</th>
+      <th class="text-start bg-secondary bg-opacity-15">Observación</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <t t-foreach="worksheet.x_studio_medida_deflexin_por_tramo" t-as="line">
+
+      <!-- ===== PARSEO DEFLEXIÓN EN GON (g m s) ===== -->
+      <t t-set="txt" t-value="line.x_studio_deflexin_medida or ''"/>
+      <t t-set="clean"
+         t-value="''.join(c if c.isdigit() or c == ' ' else ' ' for c in txt)"/>
+      <t t-set="p" t-value="clean.split()"/>
+
+      <t t-set="g" t-value="float(p[0]) if len(p) &gt; 0 else 0"/>
+      <t t-set="m" t-value="float(p[1]) if len(p) &gt; 1 else 0"/>
+      <t t-set="s" t-value="float(p[2]) if len(p) &gt; 2 else 0"/>
+
+      <!-- GON decimal -->
+      <t t-set="gon" t-value="g + (m / 100) + (s / 10000)"/>
+
+      <!-- Diferencia respecto a vertical (400 gon) -->
+      <t t-set="delta_gon" t-value="abs(400 - gon)"/>
+
+      <!-- Conversión a radianes -->
+      <t t-set="theta" t-value="delta_gon * 3.141592653589793 / 200"/>
+
+      <!-- Altura del tramo -->
+      <t t-set="h" t-value="float(line.x_studio_tramo_torre or 0)"/>
+
+      <!-- Deflexión permisible -->
+      <t t-set="perm" t-value="h / 400"/>
+
+      <!-- Deflexión equivalente -->
+      <t t-set="med" t-value="h * theta"/>
+
+      <!-- Evaluación -->
+      <t t-set="ok" t-value="med &lt;= perm"/>
+
+      <tr>
+        <td class="text-center bg-light">
+          <t t-esc="h"/>
+        </td>
+
+        <td class="text-center bg-light">
+          <t t-esc="round(perm,2)"/> mm
+        </td>
+
+        <td class="text-center bg-light">
+          <t t-esc="txt"/>
+        </td>
+
+        <td class="text-center bg-light">
+          <t t-esc="round(theta,6)"/>
+        </td>
+
+        <td class="text-center bg-light fw-semibold">
+          <t t-esc="round(med,2)"/> mm
+        </td>
+
+        <td class="text-center bg-light fw-semibold">
+          <t t-if="ok">
+            <span class="text-success">✔ Conforme</span>
+          </t>
+          <t t-else="">
+            <span class="text-danger">✖ No conforme</span>
+          </t>
+        </td>
+
+        <td class="text-start bg-light fst-italic text-muted">
+          <t t-esc="line.x_name"/>
+        </td>
+      </tr>
+
+    </t>
+  </tbody>
+</table>
+<!-- ================= GRÁFICO DE DEFLEXIÓN POR TRAMO ================= -->
+<div class="img-title text-center mt-4 mb-2">
+  GRÁFICA DE DEFLEXIÓN POR TRAMO
+</div>
+
+<div class="sh-bloque" style="text-align:center;">
+
+  <svg xmlns="http://www.w3.org/2000/svg"
+       width="520" height="360"
+       viewBox="0 0 520 440"
+       style="background:#fff; border:1px solid #1f2a44;">
+
+    <!-- Escalas -->
+    <t t-set="ALTURA_MAX" t-value="50000.0"/>   <!-- mm -->
+    <t t-set="TOL_MAX" t-value="150.0"/>        <!-- mm -->
+
+    <!-- Ejes -->
+    <line x1="40" y1="400" x2="460" y2="400" stroke="#1f2a44"/>
+    <line x1="40" y1="40" x2="40" y2="400" stroke="#1f2a44"/>
+
+    <!-- ================= PERMISIBLE H/400 ================= -->
+    <t t-set="pp" t-value="''"/>
+    <t t-foreach="worksheet.x_studio_medida_deflexin_por_tramo" t-as="l">
+
+      <t t-set="h" t-value="float(l.x_studio_tramo_torre or 0)"/>
+      <t t-set="perm" t-value="h / 400"/>
+
+      <t t-set="x" t-value="40 + (h / ALTURA_MAX) * 420"/>
+      <t t-set="y" t-value="400 - (perm / TOL_MAX) * 360"/>
+
+      <t t-set="pp" t-value="pp + str(x) + ',' + str(y) + ' '"/>
+
+      <circle t-att-cx="x" t-att-cy="y" r="4" fill="#e63946"/>
+    </t>
+
+    <polyline t-att-points="pp"
+              fill="none"
+              stroke="#e63946"
+              stroke-width="2"/>
+
+    <!-- ================= MEDIDA REAL ================= -->
+    <t t-set="pm" t-value="''"/>
+    <t t-foreach="worksheet.x_studio_medida_deflexin_por_tramo" t-as="l">
+
+      <!-- Parseo GON -->
+      <t t-set="txt" t-value="l.x_studio_deflexin_medida or ''"/>
+      <t t-set="c"
+         t-value="''.join(ch if ch.isdigit() or ch==' ' else ' ' for ch in txt)"/>
+      <t t-set="p" t-value="c.split()"/>
+
+      <t t-set="g" t-value="float(p[0]) if len(p)&gt;0 else 0"/>
+      <t t-set="m" t-value="float(p[1]) if len(p)&gt;1 else 0"/>
+      <t t-set="s" t-value="float(p[2]) if len(p)&gt;2 else 0"/>
+
+      <t t-set="gon" t-value="g + (m/100) + (s/10000)"/>
+      <t t-set="theta" t-value="abs(400 - gon) * 3.141592653589793 / 200"/>
+
+      <t t-set="h" t-value="float(l.x_studio_tramo_torre or 0)"/>
+      <t t-set="med" t-value="h * theta"/>
+      <t t-set="perm" t-value="h / 400"/>
+
+      <!-- Color según cumplimiento -->
+      <t t-set="col" t-value="'#2e7d32' if med &lt;= perm else '#c62828'"/>
+
+      <t t-set="x" t-value="40 + (h / ALTURA_MAX) * 420"/>
+      <t t-set="y" t-value="400 - (med / TOL_MAX) * 360"/>
+
+      <t t-set="pm" t-value="pm + str(x) + ',' + str(y) + ' '"/>
+
+      <circle t-att-cx="x" t-att-cy="y" r="4" t-att-fill="col"/>
+
+      <text t-att-x="x+6" t-att-y="y-6" font-size="11">
+        <t t-esc="round(med,1)"/> mm
+      </text>
+
+    </t>
+
+    <polyline t-att-points="pm"
+              fill="none"
+              stroke="#1f77b4"
+              stroke-width="2"/>
+
+  </svg>
+</div>
+
+  <!-- ================= NOTA TÉCNICA ================= -->
+  <div style="margin-top:10px; font-size:11px; color:#555;">
+     <strong>Nota técnica:</strong><br/>
+
+        • La deflexión medida se registra en unidades angulares GON, en formato
+        sexagesimal (g m s).  
+        <br/>
+
+        • Para su tratamiento numérico, el valor es normalizado a GON decimal
+        mediante la relación:
+        <em>GON = g + (m / 100) + (s / 10.000)</em>.
+        <br/>
+
+        • La desviación angular se calcula como la diferencia absoluta respecto
+        a la vertical teórica perfecta (400 gon).
+        <br/>
+
+        • Dicha desviación es convertida a radianes utilizando la equivalencia
+        <em>200 gon = π rad</em>.
+        <br/>
+
+        • La deflexión lineal equivalente se obtiene a partir de la relación
+        <em>δ = H · θ</em>, donde H corresponde a la altura del tramo y θ al ángulo
+        expresado en radianes.
+        <br/>
+
+        • El criterio de aceptación estructural se evalúa según el límite normativo
+        <em>H / 400</em>.
+        <br/>
+
+        • Los mismos valores calculados son utilizados para la representación
+        gráfica, garantizando coherencia entre la tabla analítica y la visualización.
+  </div>
+    
+    
+</t>
